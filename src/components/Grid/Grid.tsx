@@ -1,32 +1,26 @@
-import React, { useState } from 'react';
-import { GridOverlay } from '../GridOverlay/gridOverlay.tsx'
+import React, {useState} from 'react';
+import {GridOverlay} from '../GridOverlay/gridOverlay.tsx'
+import {useValidCells} from "../../features/grid/useValidCells.ts";
+import {gridConfig} from "../../features/grid/gridConfig.ts";
 
-interface GridProps {
-    rows: number;
-    cols: number;
-    cellSize: number;
-}
+export const Grid: React.FC<{ isMurloc: boolean }> = ({isMurloc}) => {
 
-export const Grid: React.FC<GridProps> = ({ rows, cols, cellSize }) => {
-    const [selectedCells, setSelectedCells] = useState<{ row: number; col: number }[]>([]);
+    const {row, col, cellSize} = gridConfig;
+    const validCells = useValidCells(isMurloc);
+    const [selectedCell, setSelectedCell] = useState<{ row: number; col: number } | null>(null);
     const [hoveredCell, setHoveredCell] = useState<{ row: number; col: number } | null>(null);
 
-    const handleCellClick = (row: number, col: number) => {
-        const alreadySelected = selectedCells.some(c => c.row === row && c.col === col);
-        if (alreadySelected) {
-            setSelectedCells(prev => prev.filter(c => c.row !== row || c.col !== col));
-        } else {
-            setSelectedCells(prev => [...prev, { row, col }]);
-        }
-    };
+    const handleClick = (row: number, col: number) =>
+        validCells.some(c => c.row === row && c.col === col) && setSelectedCell({ row, col });
+
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
         const x = Math.floor((e.clientX - rect.left) / cellSize);
         const y = Math.floor((e.clientY - rect.top) / cellSize);
 
-        if (x >= 0 && x < cols && y >= 0 && y < rows) {
-            setHoveredCell({ row: y, col: x });
+        if (x >= 0 && x < col && y >= 0 && y < row) {
+            setHoveredCell({row: y, col: x});
         } else {
             setHoveredCell(null);
         }
@@ -39,33 +33,22 @@ export const Grid: React.FC<GridProps> = ({ rows, cols, cellSize }) => {
     return (
         <div
             className="relative"
-            style={{ width: cols * cellSize, height: rows * cellSize }}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
+            style={{
+                width: col * cellSize,
+                height: row * cellSize,
+            }}
         >
-            {/* Optional background grid pattern */}
-            <div
-                className="absolute top-0 left-0 z-0"
-                style={{
-                    width: cols * cellSize,
-                    height: rows * cellSize,
-                    backgroundSize: `${cellSize}px ${cellSize}px`,
-                    backgroundImage:
-                        'linear-gradient(to right, #ccc 1px, transparent 1px), linear-gradient(to bottom, #ccc 1px, transparent 1px)',
-                }}
-            />
-
-            {/* Tower placement overlay */}
             <GridOverlay
-                rows={rows}
-                cols={cols}
+                rows={row}
+                cols={col}
                 cellSize={cellSize}
-                clickableCells={[{row: 10, col:11}]}
+                clickableCells={validCells}
                 hoveredCell={hoveredCell}
-                onCellClick={handleCellClick}
+                selectedCell={selectedCell}
+                onClick={handleClick}
             />
-
-            {/* Optional: towers/items rendered here later */}
         </div>
     );
 };
