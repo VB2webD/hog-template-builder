@@ -9,7 +9,7 @@ function App() {
         <>
             <h1>Grid</h1>
             <div className="card">
-                <Grid isMurloc={true}/>
+                <Grid isMurloc={false}/>
             </div>
         </>
     )

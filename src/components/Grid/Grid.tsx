@@ -11,7 +11,7 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({isMurloc}) => {
     const [hoveredCell, setHoveredCell] = useState<{ row: number; col: number } | null>(null);
 
     const handleClick = (row: number, col: number) =>
-        validCells.some(c => c.row === row && c.col === col) && setSelectedCell({ row, col });
+        validCells.some(c => c.row === row && c.col === col) && setSelectedCell({row, col});
 
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
