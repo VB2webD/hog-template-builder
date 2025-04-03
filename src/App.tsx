@@ -1,14 +1,18 @@
 import './App.css'
-import './components/Grid/Grid.tsx'
-import {Grid} from "./components/Grid/Grid.tsx";
+import './components/Grid/grid.tsx'
+import {Grid} from "./components/Grid/grid.tsx";
+import {TowerDisplay} from "./components/TowerDisplay/TowerDisplay.tsx";
 
 function App() {
 
 
     return (
         <>
-            <h1>Grid</h1>
+            <div className='card w-1/3'>
+                <TowerDisplay></TowerDisplay>
+            </div>
             <div className="card">
+                <h3>Grid</h3>
                 <Grid isMurloc={false}/>
             </div>
         </>

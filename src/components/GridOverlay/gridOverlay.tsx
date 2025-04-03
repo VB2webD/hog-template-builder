@@ -1,5 +1,5 @@
 import React from 'react';
-import {CellType} from "../../features/grid/validCells.ts";
+import {CellType} from "../../features/Grid/validCells.ts";
 
 export interface GridOverlayProps {
     rows: number;
@@ -9,14 +9,15 @@ export interface GridOverlayProps {
     hoveredCell?: { row: number; col: number } | null;
     selectedCell?: { row: number; col: number } | null;
     onClick?: (row: number, col: number) => void;
+    placedTowers?: Record<string, string>
 }
 
 function getBackgroundImageByType(type: CellType | undefined): string | undefined {
     switch (type) {
         case CellType.Tower:
-            return 'url("/towerBase.png")';
+            return 'url("/TowerBase.png")';
         case CellType.Murloc:
-            return 'url("/murlocHut.png")';
+            return 'url("/MurlocHut.png")';
         default:
             return undefined;
     }
@@ -30,6 +31,7 @@ export const GridOverlay: React.FC<GridOverlayProps> = ({
                                                             hoveredCell,
                                                             selectedCell,
                                                             onClick,
+    placedTowers
                                                         }) => {
     const getCellKey = (row: number, col: number) => `${row}-${col}`;
 
@@ -44,12 +46,13 @@ export const GridOverlay: React.FC<GridOverlayProps> = ({
                     const type = cell?.type;
                     const isHovered = hoveredCell?.row === row && hoveredCell?.col === col;
                     const isSelected = selectedCell?.row === row && selectedCell?.col === col;
+                    const placedImage = placedTowers?.[`${row}-${col}`];
 
 
                     return (
                         <div
                             key={getCellKey(row, col)}
-                            onClick={() => cell ?? onClick?.(row, col)}
+                            onClick={() => cell && onClick?.(row, col)}
                             className={`absolute border border-gray-300 transition-colors duration-200 cursor pointer
                                 ${cell ? 'cursor-pointer' : 'opacity-30 pointer-events-none'}
                                 ${isSelected ? 'bg-green-300' : isHovered ? 'bg-blue-200' : ''}
@@ -59,7 +62,9 @@ export const GridOverlay: React.FC<GridOverlayProps> = ({
                                 height: cellSize,
                                 top: row * cellSize,
                                 left: col * cellSize,
-                                backgroundImage: getBackgroundImageByType(type),
+                                backgroundImage: placedImage ?
+                                    `url(${placedImage})`
+                                    : getBackgroundImageByType(type),
                                 backgroundSize: 'cover',
                             }}
                         />
