@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {GridOverlay} from '../GridOverlay/gridOverlay.tsx'
 import {useValidCells} from "../../features/Grid/useValidCells.ts";
 import {gridConfig} from "../../features/Grid/gridConfig.ts";
+import {TowerEntity} from "../../features/Grid/towerEntity.ts";
+
 
 export const Grid: React.FC<{ isMurloc: boolean }> = ({isMurloc}) => {
 
@@ -9,7 +11,7 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({isMurloc}) => {
     const validCells = useValidCells(isMurloc);
     const [selectedCell, setSelectedCell] = useState<{ row: number; col: number } | null>(null);
     const [hoveredCell, setHoveredCell] = useState<{ row: number; col: number } | null>(null);
-    const [placedTowers, setPlacedTowers] = useState<Record<string, string>>({});
+    const [placedTowers, setPlacedTowers] = useState<Record<string, TowerEntity>>({});
 
     const handleClick = (row: number, col: number) =>
         validCells.some(c => c.row === row && c.col === col) && setSelectedCell({row, col});
@@ -33,25 +35,27 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({isMurloc}) => {
 
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
-        const towerImage = e.dataTransfer.getData("tower-image");
+        const tower: TowerEntity = JSON.parse(e.dataTransfer.getData("tower-entity"));
         const fromCell = e.dataTransfer.getData("from-cell");
         const rect = e.currentTarget.getBoundingClientRect();
-
+        console.log('tower: ', tower);
         const x = Math.floor((e.clientX - rect.left) / cellSize);
         const y = Math.floor((e.clientY - rect.top) / cellSize);
         const key = `${y}-${x}`;
 
         const isValid = validCells.some(cell => cell.row === y && cell.col === x);
+        if (!isValid || !tower) return;
 
-        if (isValid && towerImage) {
+
+        if (isValid && tower) {
             setPlacedTowers(prev => {
-                const updated = { ...prev };
+                const updated = {...prev};
 
                 if (fromCell && updated[fromCell]) {
                     delete updated[fromCell];
                 }
 
-                updated[key] = towerImage;
+                updated[key] = tower
 
                 return updated;
             });

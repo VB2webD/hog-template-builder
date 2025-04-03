@@ -1,5 +1,7 @@
 import React from 'react';
 import {CellType} from "../../features/Grid/validCells.ts";
+import {TowerEntity} from "../../features/Grid/towerEntity.ts";
+
 
 export interface GridOverlayProps {
     rows: number;
@@ -9,7 +11,7 @@ export interface GridOverlayProps {
     hoveredCell?: { row: number; col: number } | null;
     selectedCell?: { row: number; col: number } | null;
     onClick?: (row: number, col: number) => void;
-    placedTowers?: Record<string, string>
+    placedTowers?: Record<string, TowerEntity>
 }
 
 function getBackgroundImageByType(type: CellType | undefined): string | undefined {
@@ -31,7 +33,7 @@ export const GridOverlay: React.FC<GridOverlayProps> = ({
                                                             hoveredCell,
                                                             selectedCell,
                                                             onClick,
-    placedTowers
+                                                            placedTowers
                                                         }) => {
     const getCellKey = (row: number, col: number) => `${row}-${col}`;
 
@@ -46,20 +48,21 @@ export const GridOverlay: React.FC<GridOverlayProps> = ({
                     const type = cell?.type;
                     const isHovered = hoveredCell?.row === row && hoveredCell?.col === col;
                     const isSelected = selectedCell?.row === row && selectedCell?.col === col;
-                    const placedImage = placedTowers?.[`${row}-${col}`];
+                    const placedTower = placedTowers?.[`${row}-${col}`];
 
 
                     return (
                         <div
                             key={getCellKey(row, col)}
                             onClick={() => cell && onClick?.(row, col)}
-                            draggable={!!placedImage}
+                            draggable={!!placedTower}
                             onDragStart={(e) => {
-                                if (placedImage) {
-                                    e.dataTransfer.setData("tower-image", placedImage);
+                                if (placedTower) {
+                                    e.dataTransfer.setData("tower-entity", JSON.stringify(placedTower));
                                     e.dataTransfer.setData("from-cell", `${row}-${col}`);
                                 }
                             }}
+
                             className={`absolute border border-gray-300 transition-colors duration-200 cursor pointer
                                 ${cell ? 'cursor-pointer' : 'opacity-30 pointer-events-none'}
                                 ${isSelected ? 'bg-green-300' : isHovered ? 'bg-blue-200' : ''}
@@ -69,8 +72,8 @@ export const GridOverlay: React.FC<GridOverlayProps> = ({
                                 height: cellSize,
                                 top: row * cellSize,
                                 left: col * cellSize,
-                                backgroundImage: placedImage ?
-                                    `url(${placedImage})`
+                                backgroundImage: placedTower ?
+                                    `url(${placedTower.image})`
                                     : getBackgroundImageByType(type),
                                 backgroundSize: 'cover',
                             }}

@@ -6,9 +6,7 @@ import {TowerCard} from "./TowerCard";
 export const TowerDisplay: React.FC = () => {
     const humanTowers = towersByRace["Human"];
 
-    const handleTowerDragStart = (image: string) => (e: React.DragEvent<HTMLDivElement>) => {
-        e.dataTransfer.setData("tower-image", image);
-    };
+
 
     return (
         <div className="grid grid-cols-3 gap-2 p-4">
@@ -17,7 +15,6 @@ export const TowerDisplay: React.FC = () => {
                     key={tower.name}
                     name={tower.name}
                     image={tower.image}
-                    onDragStart={handleTowerDragStart(tower.image)}
                 />
             ))}
         </div>
