@@ -9,7 +9,7 @@ interface TowerCardProps {
 export const TowerCard: React.FC<TowerCardProps> = ({name, image, onDragStart}) => {
     return (
         <div className="border rounded p-2 cursor-move bg-white"
-             draggable
+             draggable={true}
              onDragStart={onDragStart}
         >
             <img src={image} alt={name} className="w-24 h-24 object-contain"/>

@@ -34,16 +34,27 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({isMurloc}) => {
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         const towerImage = e.dataTransfer.getData("tower-image");
-
+        const fromCell = e.dataTransfer.getData("from-cell");
         const rect = e.currentTarget.getBoundingClientRect();
+
         const x = Math.floor((e.clientX - rect.left) / cellSize);
         const y = Math.floor((e.clientY - rect.top) / cellSize);
+        const key = `${y}-${x}`;
 
         const isValid = validCells.some(cell => cell.row === y && cell.col === x);
 
         if (isValid && towerImage) {
-            const key = `${y}-${x}`;
-            setPlacedTowers(prev => ({ ...prev, [key]: towerImage }));
+            setPlacedTowers(prev => {
+                const updated = { ...prev };
+
+                if (fromCell && updated[fromCell]) {
+                    delete updated[fromCell];
+                }
+
+                updated[key] = towerImage;
+
+                return updated;
+            });
         }
     };
 

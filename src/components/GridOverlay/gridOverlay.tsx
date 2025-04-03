@@ -53,6 +53,13 @@ export const GridOverlay: React.FC<GridOverlayProps> = ({
                         <div
                             key={getCellKey(row, col)}
                             onClick={() => cell && onClick?.(row, col)}
+                            draggable={!!placedImage}
+                            onDragStart={(e) => {
+                                if (placedImage) {
+                                    e.dataTransfer.setData("tower-image", placedImage);
+                                    e.dataTransfer.setData("from-cell", `${row}-${col}`);
+                                }
+                            }}
                             className={`absolute border border-gray-300 transition-colors duration-200 cursor pointer
                                 ${cell ? 'cursor-pointer' : 'opacity-30 pointer-events-none'}
                                 ${isSelected ? 'bg-green-300' : isHovered ? 'bg-blue-200' : ''}

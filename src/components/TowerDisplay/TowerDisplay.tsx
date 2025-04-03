@@ -2,12 +2,13 @@ import React from "react";
 import {towersByRace} from "../../features/TowerDisplay/towerData";
 import {TowerCard} from "./TowerCard";
 
-interface TowerDisplayProps {
-    onTowerDragStart: (towerName: string) => void;
-}
 
-export const TowerDisplay: React.FC<TowerDisplayProps> = ({onTowerDragStart}) => {
+export const TowerDisplay: React.FC = () => {
     const humanTowers = towersByRace["Human"];
+
+    const handleTowerDragStart = (image: string) => (e: React.DragEvent<HTMLDivElement>) => {
+        e.dataTransfer.setData("tower-image", image);
+    };
 
     return (
         <div className="grid grid-cols-3 gap-2 p-4">
@@ -16,10 +17,7 @@ export const TowerDisplay: React.FC<TowerDisplayProps> = ({onTowerDragStart}) =>
                     key={tower.name}
                     name={tower.name}
                     image={tower.image}
-                    onDragStart={(e) => {
-                        e.dataTransfer.setData("tower-image", tower.image);
-                        onTowerDragStart(tower.image);
-                    }}
+                    onDragStart={handleTowerDragStart(tower.image)}
                 />
             ))}
         </div>
