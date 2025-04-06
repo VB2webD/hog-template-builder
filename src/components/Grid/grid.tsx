@@ -1,29 +1,28 @@
-import React, {useState} from 'react';
-import {GridOverlay} from '../GridOverlay/gridOverlay.tsx'
-import {useValidCells} from "../../features/Grid/useValidCells.ts";
-import {gridConfig} from "../../features/Grid/gridConfig.ts";
-import {TowerEntity} from "../../features/Grid/towerEntity.ts";
+import React, { useState } from 'react';
+import { useValidCells } from "../../features/Grid/useValidCells.ts";
+import { gridConfig } from "../../features/Grid/gridConfig.ts";
+import { TowerEntity } from "../../entities/towerEntity";
+import { useTowerStore } from "../../state/towerStore.ts";
+import { GridCell } from './gridCell.tsx';
 
-
-export const Grid: React.FC<{ isMurloc: boolean }> = ({isMurloc}) => {
-
-    const {row, col, cellSize} = gridConfig;
+export const Grid: React.FC<{ isMurloc: boolean }> = ({ isMurloc }) => {
     const validCells = useValidCells(isMurloc);
-    const [selectedCell, setSelectedCell] = useState<{ row: number; col: number } | null>(null);
+    const selectedTowerId = useTowerStore(state => state.selectedTowerId);
+    const setSelectedTowerId = useTowerStore(state => state.setSelectedTowerId);
+    const towers = useTowerStore(state => state.towers);
+    const setTower = useTowerStore(state => state.setTower);
+
+
     const [hoveredCell, setHoveredCell] = useState<{ row: number; col: number } | null>(null);
-    const [placedTowers, setPlacedTowers] = useState<Record<string, TowerEntity>>({});
-
-    const handleClick = (row: number, col: number) =>
-        validCells.some(c => c.row === row && c.col === col) && setSelectedCell({row, col});
-
+    const { row: rows, col: cols, cellSize } = gridConfig;
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
         const x = Math.floor((e.clientX - rect.left) / cellSize);
         const y = Math.floor((e.clientY - rect.top) / cellSize);
 
-        if (x >= 0 && x < col && y >= 0 && y < row) {
-            setHoveredCell({row: y, col: x});
+        if (x >= 0 && x < cols && y >= 0 && y < rows) {
+            setHoveredCell({ row: y, col: x });
         } else {
             setHoveredCell(null);
         }
@@ -38,7 +37,7 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({isMurloc}) => {
         const tower: TowerEntity = JSON.parse(e.dataTransfer.getData("tower-entity"));
         const fromCell = e.dataTransfer.getData("from-cell");
         const rect = e.currentTarget.getBoundingClientRect();
-        console.log('tower: ', tower);
+
         const x = Math.floor((e.clientX - rect.left) / cellSize);
         const y = Math.floor((e.clientY - rect.top) / cellSize);
         const key = `${y}-${x}`;
@@ -46,25 +45,21 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({isMurloc}) => {
         const isValid = validCells.some(cell => cell.row === y && cell.col === x);
         if (!isValid || !tower) return;
 
+        setTower(key, tower);
 
-        if (isValid && tower) {
-            setPlacedTowers(prev => {
-                const updated = {...prev};
-
-                if (fromCell && updated[fromCell]) {
-                    delete updated[fromCell];
-                }
-
-                updated[key] = tower
-
-                return updated;
-            });
+        if (fromCell && fromCell !== key) {
+            setTower(fromCell, null);
         }
+
+        // Optional: auto-select the newly dropped tower
+        setSelectedTowerId(key);
     };
 
     const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
     };
+
+    const getCellKey = (row: number, col: number) => `${row}-${col}`;
 
     return (
         <div
@@ -74,20 +69,31 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({isMurloc}) => {
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             style={{
-                width: col * cellSize,
-                height: row * cellSize,
+                width: cols * cellSize,
+                height: rows * cellSize,
             }}
         >
-            <GridOverlay
-                rows={row}
-                cols={col}
-                cellSize={cellSize}
-                clickableCells={validCells}
-                hoveredCell={hoveredCell}
-                selectedCell={selectedCell}
-                onClick={handleClick}
-                placedTowers={placedTowers}
-            />
+            {Array.from({ length: rows }).map((_, y) =>
+                Array.from({ length: cols }).map((_, x) => {
+                    const cellKey = getCellKey(y, x);
+                    const tower = towers[cellKey];
+                    const isSelected = selectedTowerId === cellKey;
+
+                    return (
+                        <GridCell
+                            key={cellKey}
+                            row={y}
+                            col={x}
+                            cellSize={cellSize}
+                            validCells={validCells}
+                            hoveredCell={hoveredCell}
+                            isSelected={isSelected}
+                            tower={tower}
+                            onSelect={() => setSelectedTowerId(cellKey)}
+                        />
+                    );
+                })
+            )}
         </div>
     );
 };

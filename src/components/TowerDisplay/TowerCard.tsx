@@ -1,5 +1,5 @@
 import React from "react";
-import {TowerEntity} from "../../features/Grid/towerEntity.ts";
+import {TowerEntity} from "../../entities/towerEntity.ts";
 
 export interface TowerCard {
     name: string,

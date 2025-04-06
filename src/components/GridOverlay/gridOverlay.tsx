@@ -1,6 +1,6 @@
 import React from 'react';
 import {CellType} from "../../features/Grid/validCells.ts";
-import {TowerEntity} from "../../features/Grid/towerEntity.ts";
+import {TowerEntity} from "../../entities/towerEntity.ts";
 
 
 export interface GridOverlayProps {
