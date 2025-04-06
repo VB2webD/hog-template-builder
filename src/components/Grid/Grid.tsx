@@ -3,7 +3,7 @@ import { useValidCells } from "../../features/Grid/useValidCells.ts";
 import { gridConfig } from "../../features/Grid/gridConfig.ts";
 import { TowerEntity } from "../../entities/towerEntity";
 import { useTowerStore } from "../../state/towerStore.ts";
-import { GridCell } from './gridCell.tsx';
+import { GridCell } from './GridCell.tsx';
 
 export const Grid: React.FC<{ isMurloc: boolean }> = ({ isMurloc }) => {
     const validCells = useValidCells(isMurloc);

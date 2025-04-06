@@ -42,7 +42,7 @@ export const Inventory: React.FC = () => {
                 updated[fromIndex] = null;
             }
 
-            
+
             setTower(selectedTowerId, {
                 ...tower,
                 items: updated
@@ -54,15 +54,15 @@ export const Inventory: React.FC = () => {
 
 
     return (
-        <div className="relative p-4 pt-12 w-64 bg-gray-100 border rounded shadow">
+        <div className="inline-block bg-gray-100 border rounded shadow relative pt-14 px-4 pb-4">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <img
                     src={tower?.image || "/icons/placeholder.png"}
                     alt="Tower preview"
-                    className="w-20 h-20 object-contain border bg-white rounded-full"
+                    className="w-20 h-20 object-contain border bg-white"
                 />
             </div>
-            <div className="grid grid-cols-2 grid-rows-3 gap-1 items-center">
+            <div className="grid grid-cols-2 grid-rows-3 gap-1 justify-center items-start">
                 {normalizedItems.map((item, index) => (
                     <InventoryCard
                         key={index}

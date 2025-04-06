@@ -9,7 +9,7 @@ export const TowerDisplay: React.FC = () => {
 
 
     return (
-        <div className="grid grid-cols-3 gap-2 p-4">
+        <div className="grid gap-2 p-4 bg-gray-100 border rounded shadow inline-block">
             {humanTowers.map((tower) => (
                 <TowerCard
                     key={tower.name}
