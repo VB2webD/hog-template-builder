@@ -11,12 +11,12 @@ export const PageLayout: React.FC = () => {
                 {/* Left Sidebar */}
                 <div className="flex flex-col gap-4">
                     <Inventory/>
-                    <ItemDisplay/>
+                    <TowerDisplay/>
                 </div>
 
                 {/* Main content */}
                 <div className="flex flex-col flex-grow items-center bg-red-50 gap-4">
-                    <TowerDisplay/>
+                    <ItemDisplay/>
                     <Grid isMurloc={false}/>
                 </div>
 
