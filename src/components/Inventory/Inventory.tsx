@@ -10,8 +10,10 @@ export const Inventory: React.FC = () => {
 
     const tower = selectedTowerId ? towers[selectedTowerId] : null;
     const items = tower?.items ?? [];
+    const slots = tower?.slots ?? 0;
 
-    const normalizedItems = Array.from({length: 6}, (_, i) => items[i] || null);
+    const normalizedItems: (ItemEntity | null)[] = Array.from({length: 6}, (_, i) => items[i] || null);
+
 
     const handleRemove = (index: number) => {
         if (!tower || selectedTowerId === null) return;
@@ -22,6 +24,8 @@ export const Inventory: React.FC = () => {
             items: updated,
         });
     };
+
+    console.log(tower, slots)
 
     const handleDrop = (index: number, e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
@@ -34,7 +38,7 @@ export const Inventory: React.FC = () => {
 
         try {
             const item: ItemEntity = JSON.parse(itemData);
-            const updated = Array.from({length: 6}, (_, i) => tower.items[i] || null);
+            const updated = Array.from({length: slots}, (_, i) => tower.items[i] || null);
 
             updated[index] = item;
 
@@ -57,20 +61,27 @@ export const Inventory: React.FC = () => {
         <div className="inline-block bg-gray-100 border rounded shadow relative pt-14 px-4 pb-4">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <img
-                    src={tower?.image || "/icons/placeholder.png"}
+                    src={tower?.image || "/placeholder.webp"}
                     alt="Tower preview"
                     className="w-20 h-20 object-contain border bg-white"
                 />
             </div>
             <div className="grid grid-cols-2 grid-rows-3 gap-1 justify-center items-start">
                 {normalizedItems.map((item, index) => (
-                    <InventoryCard
-                        key={index}
-                        index={index}
-                        item={item}
-                        onRightClick={handleRemove}
-                        onDrop={handleDrop}
-                    />
+                    index >= slots ? (
+                        <div
+                            key={index}
+                            className="w-16 h-16 border border-gray-300 bg-gray-200 opacity-50"
+                        />
+                    ) : (
+                        <InventoryCard
+                            key={index}
+                            index={index}
+                            item={item}
+                            onRightClick={handleRemove}
+                            onDrop={handleDrop}
+                        />
+                    )
                 ))}
             </div>
         </div>

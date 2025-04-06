@@ -1,19 +1,21 @@
-import React, { useState } from "react";
-import { TowerEntity } from "../../entities/towerEntity.ts";
+import React, {useState} from "react";
+import {TowerEntity} from "../../entities/towerEntity.ts";
 
 export interface TowerCardProps {
     name: string;
     image: string;
+    slots: number;
 }
 
-export const TowerCard: React.FC<TowerCardProps> = ({ name, image }) => {
+export const TowerCard: React.FC<TowerCardProps> = ({name, image, slots}) => {
     const [hover, setHover] = useState(false);
 
     const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
         const towerEntity: TowerEntity = {
             name,
             image,
-            items: []
+            items: [],
+            slots: slots
         };
         e.dataTransfer.setData("tower-entity", JSON.stringify(towerEntity));
     };

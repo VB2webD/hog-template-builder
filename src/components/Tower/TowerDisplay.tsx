@@ -14,6 +14,7 @@ export const TowerDisplay: React.FC = () => {
                                 key={`${raceKey}-${tower.name}`}
                                 name={tower.name}
                                 image={tower.image}
+                                slots={tower.slots}
                             />
                         ))}
                     </div>

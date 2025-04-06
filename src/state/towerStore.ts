@@ -30,7 +30,7 @@ export const useTowerStore = create<TowerStore>((set) => ({
     addItemToTower: (towerId, item) =>
         set((state: TowerStore) => {
             const tower = state.towers[towerId];
-            if (!tower || tower.items.length >= 6) return state;
+            if (!tower || tower.items.length >= tower.slots) return state;
 
             const updatedTower: TowerEntity = {
                 ...tower,

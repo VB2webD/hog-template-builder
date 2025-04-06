@@ -22,7 +22,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
         const tower = towers[selectedTowerId];
         if (!tower) return;
 
-        const normalizedItems: (ItemEntity | null)[] = Array.from({ length: 6 }, (_, i) => tower.items[i] ?? null);
+        const normalizedItems: (ItemEntity | null)[] = Array.from({ length: tower.slots }, (_, i) => tower.items[i] ?? null);
         const emptyIndex = normalizedItems.findIndex(slot => slot === null);
         if (emptyIndex === -1) return;
 
