@@ -4,7 +4,7 @@ import { ItemCard } from "./ItemCard";
 
 export const ItemDisplay: React.FC = () => {
     return (
-        <div className="grid gap-4 p-4 bg-gray-100 border rounded shadow inline-block">
+        <div className="grid gap-2 p-5 grid-cols-10 overflow-y-auto bg-gray-100 border rounded shadow">
             {Items.map((item) => (
                 <ItemCard key={item.name} item={item} />
             ))}
