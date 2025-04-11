@@ -3,13 +3,15 @@ import { ItemDisplay } from "../Item/ItemDisplay";
 import { TowerDisplay } from "../Tower/TowerDisplay";
 import { Grid } from "../Grid/Grid.tsx";
 import {InventoryDisplay} from "../Inventory/InventoryDisplay.tsx";
+import {TitleDisplay} from "../Title/TitleDisplay.tsx";
 
 export const PageLayout: React.FC = () => {
     return (
-        <div className="min-h-screen min-w-screen bg-blue-50 relative p-10">
-            <div className="flex gap-4 bg-yellow-50 items-center">
+        <div className="min-h-screen min-w-screen bg-blue-100 relative p-10">
+            <div className="flex gap-4 bg-yellow-100 items-center">
                 {/* Left Sidebar */}
                 <div className="flex flex-col gap-4">
+                    <TitleDisplay/>
                     <InventoryDisplay/>
                     <TowerDisplay/>
                 </div>

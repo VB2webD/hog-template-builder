@@ -3,6 +3,8 @@ import {TowerEntity} from '../entities/towerEntity';
 import {ItemEntity} from '../entities/itemEntity';
 
 type TowerStore = {
+    title: string;
+    setTitle: (title: string) => void;
     towers: Record<string, TowerEntity>;
     selectedTowerId: string | null;
     setTower: (id: string, tower: TowerEntity | null) => void;
@@ -12,6 +14,11 @@ type TowerStore = {
 
 
 export const useTowerStore = create<TowerStore>((set) => ({
+        title: '',
+        setTitle: (title) => {
+            console.log("[ZUSTAND] setTitle:", title);
+            set({title});
+        },
         towers: {},
         selectedTowerId: null,
 
