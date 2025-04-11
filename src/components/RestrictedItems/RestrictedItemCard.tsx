@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { ItemEntity } from "../../entities/itemEntity";
-import {getItemShadowClass, setItemDragData} from "../../features/Items/itemHelper.ts";
+import {addItemOnFirstEmptySlot, getItemShadowClass, setItemDragData} from "../../features/Items/itemHelper.ts";
+import {useTowerStore} from "../../state/towerStore.ts";
 
 interface RestrictedItemCardProps {
     item: ItemEntity;
 }
 
 export const RestrictedItemCard: React.FC<RestrictedItemCardProps> = ({ item }) => {
+    const selectedTowerId = useTowerStore(state => state.selectedTowerId)
     const [hover, setHover] = useState(false);
+
 
     return (
         <div
@@ -24,6 +27,7 @@ export const RestrictedItemCard: React.FC<RestrictedItemCardProps> = ({ item }) 
             onDragStart={(e) => {
                 setItemDragData(e, item, -1);
             }}
+            onDoubleClick={()=>{addItemOnFirstEmptySlot(selectedTowerId,item)}}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >

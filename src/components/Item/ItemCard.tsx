@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ItemEntity } from "../../entities/itemEntity";
 import { useTowerStore } from "../../state/towerStore.ts";
+import {addItemOnFirstEmptySlot} from "../../features/Items/itemHelper.ts";
 
 interface ItemCardProps {
     item: ItemEntity;
@@ -8,38 +9,15 @@ interface ItemCardProps {
 
 export const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
     const selectedTowerId = useTowerStore(state => state.selectedTowerId);
-    const towers = useTowerStore(state => state.towers);
-    const setTower = useTowerStore(state => state.setSelectedTower);
     const [hover, setHover] = useState(false);
-
-    const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-        e.dataTransfer.setData("item-entity", JSON.stringify(item));
-    };
-
-    const handleDoubleClick = () => {
-        if (!selectedTowerId) return;
-
-        const tower = towers[selectedTowerId];
-        if (!tower) return;
-
-        const normalizedItems: (ItemEntity | null)[] = Array.from({ length: tower.slots }, (_, i) => tower.items[i] ?? null);
-        const emptyIndex = normalizedItems.findIndex(slot => slot === null);
-        if (emptyIndex === -1) return;
-
-        normalizedItems[emptyIndex] = item;
-
-        setTower(selectedTowerId, {
-            ...tower,
-            items: normalizedItems
-        });
-    };
 
     return (
         <div
             className="w-16 h-16 cursor-move relative rounded border bg-white"
             draggable
-            onDoubleClick={handleDoubleClick}
-            onDragStart={handleDragStart}
+            onDoubleClick={() => {addItemOnFirstEmptySlot(selectedTowerId,item)}
+            }
+            onDragStart={(e)=> e.dataTransfer.setData("item-entity", JSON.stringify(item))}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
             style={{

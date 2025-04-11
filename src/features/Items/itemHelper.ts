@@ -45,3 +45,16 @@ export function handleItemDrop(
     }
 }
 
+export function addItemOnFirstEmptySlot(towerId: string | null, item: ItemEntity) {
+    const tower = towerId ? useTowerStore.getState().towers[towerId] : null;
+
+    if (!tower || !towerId) return;
+
+    const normalizedItems: (ItemEntity | null)[] = Array.from({length: tower.slots}, (_, i) => tower.items[i] ?? null);
+    const emptyIndex = normalizedItems.findIndex(slot => slot === null);
+
+    if (emptyIndex === -1) return;
+    const updateItemSlot = useTowerStore.getState().updateItemSlot
+    updateItemSlot(towerId, item, emptyIndex, emptyIndex)
+}
+
