@@ -25,6 +25,7 @@ export const InventoryCard: React.FC<InventoryCardProps> = ({ index, item, onRig
 
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         onDrop(index, e);
+        console.log('dropped')
     };
 
     const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -42,6 +43,8 @@ export const InventoryCard: React.FC<InventoryCardProps> = ({ index, item, onRig
             style={{
                 backgroundImage: item ? `url(${item.image})` : undefined,
                 backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat"
             }}
         >
             {!item && (

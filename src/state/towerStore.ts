@@ -7,41 +7,59 @@ type TowerStore = {
     selectedTowerId: string | null;
     setTower: (key: string, tower: TowerEntity | null) => void;
     setSelectedTowerId: (key: string | null) => void;
-    addItemToTower: (towerId: string, item: ItemEntity) => void;
+    updateItemSlot: (towerId: string, item: ItemEntity, toIndex:number, fromIndex: number) => void;
 };
 
 export const useTowerStore = create<TowerStore>((set) => ({
     towers: {},
     selectedTowerId: null,
 
-    setTower: (key, tower) =>
+    setTower: (gridPosition, tower) => {
         set((state: TowerStore) => {
             const updated = { ...state.towers };
             if (tower) {
-                updated[key] = tower;
+                updated[gridPosition] = tower;
+                console.log("[ZUSTAND] setTower updated:", gridPosition);
+                console.log("[ZUSTAND] New tower state:", tower);
             } else {
-                delete updated[key];
+                delete updated[gridPosition];
+                console.log("[ZUSTAND] setTower removed:", gridPosition);
             }
+            console.log("[ZUSTAND] Full towers map after update:", updated);
             return { towers: updated };
-        }),
+        });
+    },
 
-    setSelectedTowerId: (key) => set({ selectedTowerId: key }),
+    setSelectedTowerId: (key) => {
+        console.log("[ZUSTAND] setSelectedTowerId:", key);
+        set({ selectedTowerId: key });
+    },
 
-    addItemToTower: (towerId, item) =>
-        set((state: TowerStore) => {
+    updateItemSlot: (towerId:string, item:ItemEntity, toIndex:number, fromIndex:number) =>
+        set((state) => {
             const tower = state.towers[towerId];
-            if (!tower || tower.items.length >= tower.slots) return state;
+            if (!tower) return state;
 
-            const updatedTower: TowerEntity = {
-                ...tower,
-                items: [...tower.items, item]
-            };
+            const updated = Array.from({ length: tower.slots }, (_, i) => tower.items[i] || null);
+            updated[toIndex] = item;
+
+            if (fromIndex !== toIndex) {
+                updated[fromIndex] = null;
+            }
+
+            console.log(`[updateItemSlot] tower: ${towerId}, from: ${fromIndex}, to: ${toIndex}`);
+            console.log("[updateItemSlot] updated items:", updated);
 
             return {
                 towers: {
                     ...state.towers,
-                    [towerId]: updatedTower
-                }
+                    [towerId]: {
+                        ...tower,
+                        items: updated,
+                    },
+                },
             };
-        })
+        }),
+
+
 }));
