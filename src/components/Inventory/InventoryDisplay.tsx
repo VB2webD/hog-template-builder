@@ -11,7 +11,7 @@ export const InventoryDisplay: React.FC = () => {
 
     return (
         <div className="flex gap-4 items-start">
-            <Inventory towerId={selectedTowerId} tower={tower} />
+            <Inventory towerId={selectedTowerId} />
             {tower && (
                 <RestrictedItemPanel
                     name={tower.name}

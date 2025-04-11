@@ -32,6 +32,12 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({ isMurloc }) => {
         setHoveredCell(null);
     };
 
+    const handleRightClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        if (!selectedTowerId) return;
+        setTower(selectedTowerId, null);
+    }
+
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         const tower: TowerEntity = JSON.parse(e.dataTransfer.getData("tower-entity"));
@@ -51,7 +57,6 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({ isMurloc }) => {
             setTower(fromCell, null);
         }
 
-        // Optional: auto-select the newly dropped tower
         setSelectedTowerId(key);
     };
 
@@ -65,6 +70,7 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({ isMurloc }) => {
         <div
             className="relative"
             onMouseMove={handleMouseMove}
+            onContextMenu = {handleRightClick}
             onMouseLeave={handleMouseLeave}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
