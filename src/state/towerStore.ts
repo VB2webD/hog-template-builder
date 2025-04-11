@@ -1,65 +1,63 @@
-import { create } from 'zustand';
-import { TowerEntity } from '../entities/towerEntity.ts';
-import { ItemEntity } from '../entities/itemEntity.ts';
+import {create} from 'zustand';
+import {TowerEntity} from '../entities/towerEntity';
+import {ItemEntity} from '../entities/itemEntity';
 
 type TowerStore = {
     towers: Record<string, TowerEntity>;
     selectedTowerId: string | null;
-    setTower: (key: string, tower: TowerEntity | null) => void;
-    setSelectedTowerId: (key: string | null) => void;
-    updateItemSlot: (towerId: string, item: ItemEntity, toIndex:number, fromIndex: number) => void;
+    setTower: (id: string, tower: TowerEntity | null) => void;
+    setSelectedTowerId: (id: string | null) => void;
+    updateItemSlot: (towerId: string, item: ItemEntity | null, toIndex: number, fromIndex: number) => void;
 };
 
+
 export const useTowerStore = create<TowerStore>((set) => ({
-    towers: {},
-    selectedTowerId: null,
+        towers: {},
+        selectedTowerId: null,
 
-    setTower: (gridPosition, tower) => {
-        set((state: TowerStore) => {
-            const updated = { ...state.towers };
-            if (tower) {
-                updated[gridPosition] = tower;
-                console.log("[ZUSTAND] setTower updated:", gridPosition);
-                console.log("[ZUSTAND] New tower state:", tower);
-            } else {
-                delete updated[gridPosition];
-                console.log("[ZUSTAND] setTower removed:", gridPosition);
-            }
-            console.log("[ZUSTAND] Full towers map after update:", updated);
-            return { towers: updated };
-        });
-    },
+        setTower: (gridPosition, tower) => {
+            set((state) => {
+                const updated = {...state.towers};
+                if (tower) {
+                    updated[gridPosition] = tower;
+                    console.log("[ZUSTAND] setTower updated:", gridPosition);
+                } else {
+                    delete updated[gridPosition];
+                    console.log("[ZUSTAND] setTower removed:", gridPosition);
+                }
+                return {towers: updated};
+            });
+        },
 
-    setSelectedTowerId: (key) => {
-        console.log("[ZUSTAND] setSelectedTowerId:", key);
-        set({ selectedTowerId: key });
-    },
+        setSelectedTowerId: (id) => {
+            console.log("[ZUSTAND] setSelectedTowerId:", id);
+            set({selectedTowerId: id});
+        },
 
-    updateItemSlot: (towerId:string, item:ItemEntity, toIndex:number, fromIndex:number) =>
-        set((state) => {
-            const tower = state.towers[towerId];
-            if (!tower) return state;
+        updateItemSlot: (towerId, item, toIndex, fromIndex) =>
+            set((state) => {
+                const tower = state.towers[towerId];
+                if (!tower) return state;
 
-            const updated = Array.from({ length: tower.slots }, (_, i) => tower.items[i] || null);
-            updated[toIndex] = item;
+                const updatedItems = Array.from({length: tower.slots}, (_, i) => tower.items[i] || null);
 
-            if (fromIndex !== toIndex) {
-                updated[fromIndex] = null;
-            }
+                updatedItems[toIndex] = item;
 
-            console.log(`[updateItemSlot] tower: ${towerId}, from: ${fromIndex}, to: ${toIndex}`);
-            console.log("[updateItemSlot] updated items:", updated);
+                if (fromIndex !== toIndex) {
+                    updatedItems[fromIndex] = null;
+                }
 
-            return {
-                towers: {
-                    ...state.towers,
-                    [towerId]: {
-                        ...tower,
-                        items: updated,
+                return {
+                    towers: {
+                        ...state.towers,
+                        [towerId]: {
+                            ...tower,
+                            items: updatedItems,
+                        },
                     },
-                },
-            };
-        }),
+                };
+            }),
 
 
-}));
+    }))
+;

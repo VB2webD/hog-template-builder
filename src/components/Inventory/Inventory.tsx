@@ -1,56 +1,31 @@
 import React from "react";
 import {InventoryCard} from "./InventoryCard";
 import {ItemEntity} from "../../entities/itemEntity";
-import {TowerEntity} from "../../entities/towerEntity";
 import {useTowerStore} from "../../state/towerStore";
+import {handleItemDrop} from "../../features/Items/itemHelper.ts";
 
 interface InventoryProps {
-    towerId:string |null;
-    tower: TowerEntity | null;
+    towerId: string | null;
 }
 
-export const Inventory: React.FC<InventoryProps> = ({towerId, tower}) => {
+export const Inventory: React.FC<InventoryProps> = ({towerId}) => {
+    const tower = useTowerStore(state =>
+        towerId ? state.towers[towerId] : null
+    );
     const updateItemSlot = useTowerStore(state => state.updateItemSlot);
-    const setTower = useTowerStore(state => state.setTower);
 
     const slots = tower?.slots ?? 0;
     const items = tower?.items ?? [];
-    const normalizedItems: (ItemEntity | null)[] = Array.from(
-        {length: 6},
-        (_, i) => items[i] || null
-    );
+    const normalizedItems: (ItemEntity | null)[] = Array.from({length: 6}, (_, i) => items[i] || null);
 
     const handleRemove = (index: number) => {
-        if (!tower) return;
-        const updated = [...items];
-        updated[index] = null;
-
-        setTower(tower.name, {
-            ...tower,
-            items: updated,
-        });
+        if (!towerId) return;
+        updateItemSlot(towerId, null, index, index)
     };
 
     const handleDrop = (index: number, e: React.DragEvent<HTMLDivElement>) => {
-        if (!tower || !towerId) return;
-        e.preventDefault();
-
-        const itemData = e.dataTransfer.getData("item-entity");
-        const fromIndex = parseInt(e.dataTransfer.getData("inventory-index"));
-        console.log(itemData)
-        if (!itemData) return;
-
-        try {
-            const item: ItemEntity = JSON.parse(itemData);
-            updateItemSlot(
-                towerId,
-                item,
-                index,
-                fromIndex
-            );
-        } catch (err) {
-            console.error("Failed to parse item-entity", err);
-        }
+        if (!towerId) return;
+        handleItemDrop(index, e, towerId)
     };
 
     return (
@@ -63,9 +38,9 @@ export const Inventory: React.FC<InventoryProps> = ({towerId, tower}) => {
                 />
             </div>
             <div className="grid grid-cols-2 grid-rows-3 gap-1 justify-center items-start">
-                {[...Array(6)].map((_, index) => {
+                {Array.from({length: 6}, (_, index) => {
                     const item = normalizedItems[index];
-                    const isDisabled = index >= slots || !tower;
+                    const isDisabled = index >= slots;
 
                     return isDisabled ? (
                         <div

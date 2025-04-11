@@ -9,7 +9,7 @@ interface ItemCardProps {
 export const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
     const selectedTowerId = useTowerStore(state => state.selectedTowerId);
     const towers = useTowerStore(state => state.towers);
-    const setTower = useTowerStore(state => state.setTower);
+    const setTower = useTowerStore(state => state.setSelectedTower);
     const [hover, setHover] = useState(false);
 
     const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
