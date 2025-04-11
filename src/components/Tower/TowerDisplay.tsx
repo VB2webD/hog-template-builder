@@ -54,6 +54,7 @@ export const TowerDisplay: React.FC = () => {
                                     <TowerCard
                                         key={`${activeRace}-${tower.name}`}
                                         name={tower.name}
+                                        tier={tower.tier}
                                         image={tower.image}
                                         slots={tower.slots}
                                     />

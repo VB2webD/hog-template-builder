@@ -36,7 +36,7 @@ export const GridOverlay: React.FC<GridOverlayProps> = ({
                                                             placedTowers
                                                         }) => {
     const getCellKey = (row: number, col: number) => `${row}-${col}`;
-
+console.log(placedTowers);
     return (
         <div
             className="absolute top-0 left-0"

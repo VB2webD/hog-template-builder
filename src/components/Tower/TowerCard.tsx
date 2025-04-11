@@ -4,16 +4,18 @@ import {TowerEntity} from "../../entities/towerEntity.ts";
 export interface TowerCardProps {
     name: string;
     image: string;
+    tier: number;
     slots: number;
 }
 
-export const TowerCard: React.FC<TowerCardProps> = ({name, image, slots}) => {
+export const TowerCard: React.FC<TowerCardProps> = ({name, image, tier,slots}) => {
     const [hover, setHover] = useState(false);
 
     const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
         const towerEntity: TowerEntity = {
             name,
             image,
+            tier,
             items: [],
             slots: slots
         };

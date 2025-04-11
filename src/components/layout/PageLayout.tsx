@@ -1,8 +1,8 @@
 import React from "react";
-import { Inventory } from "../Inventory/Inventory";
 import { ItemDisplay } from "../Item/ItemDisplay";
 import { TowerDisplay } from "../Tower/TowerDisplay";
 import { Grid } from "../Grid/Grid.tsx";
+import {InventoryDisplay} from "../Inventory/InventoryDisplay.tsx";
 
 export const PageLayout: React.FC = () => {
     return (
@@ -10,7 +10,7 @@ export const PageLayout: React.FC = () => {
             <div className="flex gap-4 bg-yellow-50 items-center">
                 {/* Left Sidebar */}
                 <div className="flex flex-col gap-4">
-                    <Inventory/>
+                    <InventoryDisplay/>
                     <TowerDisplay/>
                 </div>
 
