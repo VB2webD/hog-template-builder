@@ -3,6 +3,7 @@ import {InventoryCard} from "./InventoryCard";
 import {ItemEntity} from "../../entities/itemEntity";
 import {useTowerStore} from "../../state/towerStore";
 import {handleItemDrop} from "../../features/Items/itemHelper.ts";
+import {PinButton} from "./PinButton.tsx";
 
 interface InventoryProps {
     towerId: string | null;
@@ -30,6 +31,7 @@ export const Inventory: React.FC<InventoryProps> = ({towerId}) => {
 
     return (
         <div className="inline-block bg-gray-100 border rounded shadow relative pt-14 px-4 pb-4 min-h-[192px] min-w-[144px]">
+            {towerId && <PinButton towerId={towerId} />}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <img
                     src={tower?.image || "/placeholder.webp"}

@@ -7,8 +7,10 @@ type TowerStore = {
     setTitle: (title: string) => void;
     towers: Record<string, TowerEntity>;
     selectedTowerId: string | null;
+    pinnedTowers: string[];
     setTower: (id: string, tower: TowerEntity | null) => void;
     setSelectedTowerId: (id: string | null) => void;
+    togglePinnedTower: (id: string) => void;
     updateItemSlot: (towerId: string, item: ItemEntity | null, toIndex: number, fromIndex: number) => void;
 };
 
@@ -21,6 +23,7 @@ export const useTowerStore = create<TowerStore>((set) => ({
         },
         towers: {},
         selectedTowerId: null,
+        pinnedTowers: [],
 
         setTower: (gridPosition, tower) => {
             set((state) => {
@@ -41,7 +44,19 @@ export const useTowerStore = create<TowerStore>((set) => ({
             set({selectedTowerId: id});
         },
 
-        updateItemSlot: (towerId, item, toIndex, fromIndex) =>
+    togglePinnedTower: (id) =>
+        set((state) => {
+            const isPinned = state.pinnedTowers.includes(id);
+            const updatedPins = isPinned
+                ? state.pinnedTowers.filter(towerId => towerId !== id)
+                : [...state.pinnedTowers, id];
+
+            console.log("[ZUSTAND] Toggled pinned tower:", id, "→", updatedPins);
+            return { pinnedTowers: updatedPins };
+        }),
+
+
+    updateItemSlot: (towerId, item, toIndex, fromIndex) =>
             set((state) => {
                 const tower = state.towers[towerId];
                 if (!tower) return state;

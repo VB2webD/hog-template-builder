@@ -1,9 +1,10 @@
 import React from "react";
-import { ItemDisplay } from "../Item/ItemDisplay";
-import { TowerDisplay } from "../Tower/TowerDisplay";
-import { Grid } from "../Grid/Grid.tsx";
+import {ItemDisplay} from "../Item/ItemDisplay";
+import {TowerDisplay} from "../Tower/TowerDisplay";
+import {Grid} from "../Grid/Grid.tsx";
 import {InventoryDisplay} from "../Inventory/InventoryDisplay.tsx";
 import {TitleDisplay} from "../Title/TitleDisplay.tsx";
+import {PinnedDisplay} from "../PinnedHeroes/PinnedDisplay.tsx";
 
 export const PageLayout: React.FC = () => {
     return (
@@ -24,7 +25,7 @@ export const PageLayout: React.FC = () => {
 
                 {/* Info Panel, wip*/}
                 <div className="flex flex-col flex-grow items-center bg-purple-50 gap-4">
-
+                    <PinnedDisplay/>
                 </div>
             </div>
         </div>
