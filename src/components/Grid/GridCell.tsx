@@ -1,8 +1,7 @@
-
-
 import React from 'react';
 import { CellType } from '../../features/Grid/validCells';
-import { TowerEntity } from '../../entities/towerEntity';
+import { flatTowers } from '../../features/Towers/towerData.ts';
+import { PlacedTower } from '../../state/towerStore.ts';
 
 interface GridItemProps {
     row: number;
@@ -11,12 +10,15 @@ interface GridItemProps {
     validCells: { row: number; col: number; type: CellType }[];
     hoveredCell: { row: number; col: number } | null;
     isSelected: boolean;
-    tower?: TowerEntity;
+    tower?: PlacedTower;
     onSelect: () => void;
 }
 
-const getBackgroundImage = (tower: TowerEntity | undefined, type: CellType | undefined): string | undefined => {
-    if (tower) return `url(${tower.image})`;
+const getBackgroundImage = (
+    flatTowerImage: string | undefined,
+    type: CellType | undefined
+): string | undefined => {
+    if (flatTowerImage) return `url(${flatTowerImage})`;
     if (type === CellType.Tower) return 'url("/TowerBase.png")';
     if (type === CellType.Murloc) return 'url("/MurlocHut.png")';
     return undefined;
@@ -30,12 +32,14 @@ export const GridCell: React.FC<GridItemProps> = ({
                                                       hoveredCell,
                                                       isSelected,
                                                       tower,
-                                                      onSelect
+                                                      onSelect,
                                                   }) => {
     const cellKey = `${row}-${col}`;
     const isHovered = hoveredCell?.row === row && hoveredCell?.col === col;
     const cell = validCells.find(c => c.row === row && c.col === col);
-    const backgroundImage = getBackgroundImage(tower, cell?.type);
+
+    const flatTower = tower ? flatTowers[tower.id] : null;
+    const backgroundImage = getBackgroundImage(flatTower?.image, cell?.type);
 
     return (
         <div
@@ -44,7 +48,7 @@ export const GridCell: React.FC<GridItemProps> = ({
             draggable={!!tower}
             onDragStart={(e) => {
                 if (tower) {
-                    e.dataTransfer.setData("tower-entity", JSON.stringify(tower));
+                    e.dataTransfer.setData("tower-id", tower.id.toString());
                     e.dataTransfer.setData("from-cell", cellKey);
                 }
             }}

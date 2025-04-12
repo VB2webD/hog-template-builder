@@ -1,48 +1,54 @@
-import {create} from 'zustand';
-import {TowerEntity} from '../entities/towerEntity';
-import {ItemEntity} from '../entities/itemEntity';
+import { create } from 'zustand';
+import { ItemEntity } from '../entities/itemEntity';
+import { flatTowers } from '../features/Towers/towerData.ts';
+
+
+export interface PlacedTower {
+    id: number; // reference to flatTowers
+    items: (ItemEntity | null)[];
+}
 
 type TowerStore = {
     title: string;
     setTitle: (title: string) => void;
-    towers: Record<string, TowerEntity>;
+    towers: Record<string, PlacedTower>;
     selectedTowerId: string | null;
     pinnedTowers: string[];
-    setTower: (id: string, tower: TowerEntity | null) => void;
+    setTower: (id: string, tower: PlacedTower | null) => void;
     setSelectedTowerId: (id: string | null) => void;
     togglePinnedTower: (id: string) => void;
     updateItemSlot: (towerId: string, item: ItemEntity | null, toIndex: number, fromIndex: number) => void;
 };
 
-
 export const useTowerStore = create<TowerStore>((set) => ({
-        title: '',
-        setTitle: (title) => {
-            console.log("[ZUSTAND] setTitle:", title);
-            set({title});
-        },
-        towers: {},
-        selectedTowerId: null,
-        pinnedTowers: [],
+    title: '',
+    setTitle: (title) => {
+        console.log("[ZUSTAND] setTitle:", title);
+        set({ title });
+    },
 
-        setTower: (gridPosition, tower) => {
-            set((state) => {
-                const updated = {...state.towers};
-                if (tower) {
-                    updated[gridPosition] = tower;
-                    console.log("[ZUSTAND] setTower updated:", gridPosition);
-                } else {
-                    delete updated[gridPosition];
-                    console.log("[ZUSTAND] setTower removed:", gridPosition);
-                }
-                return {towers: updated};
-            });
-        },
+    towers: {},
+    selectedTowerId: null,
+    pinnedTowers: [],
 
-        setSelectedTowerId: (id) => {
-            console.log("[ZUSTAND] setSelectedTowerId:", id);
-            set({selectedTowerId: id});
-        },
+    setTower: (gridPosition, tower) => {
+        set((state) => {
+            const updated = { ...state.towers };
+            if (tower) {
+                updated[gridPosition] = tower;
+                console.log("[ZUSTAND] setTower updated:", gridPosition, tower);
+            } else {
+                delete updated[gridPosition];
+                console.log("[ZUSTAND] setTower removed:", gridPosition, tower);
+            }
+            return { towers: updated };
+        });
+    },
+
+    setSelectedTowerId: (id) => {
+        console.log("[ZUSTAND] setSelectedTowerId:", id);
+        set({ selectedTowerId: id });
+    },
 
     togglePinnedTower: (id) =>
         set((state) => {
@@ -55,31 +61,33 @@ export const useTowerStore = create<TowerStore>((set) => ({
             return { pinnedTowers: updatedPins };
         }),
 
-
     updateItemSlot: (towerId, item, toIndex, fromIndex) =>
-            set((state) => {
-                const tower = state.towers[towerId];
-                if (!tower) return state;
+        set((state) => {
+            const tower = state.towers[towerId];
+            if (!tower) return state;
 
-                const updatedItems = Array.from({length: tower.slots}, (_, i) => tower.items[i] || null);
+            const definition = flatTowers[tower.id];
+            if (!definition) return state;
 
-                updatedItems[toIndex] = item;
+            const updatedItems = Array.from(
+                { length: definition.slots },
+                (_, i) => tower.items[i] || null
+            );
 
-                if (fromIndex !== toIndex) {
-                    updatedItems[fromIndex] = null;
-                }
+            updatedItems[toIndex] = item;
 
-                return {
-                    towers: {
-                        ...state.towers,
-                        [towerId]: {
-                            ...tower,
-                            items: updatedItems,
-                        },
+            if (fromIndex !== toIndex) {
+                updatedItems[fromIndex] = null;
+            }
+
+            return {
+                towers: {
+                    ...state.towers,
+                    [towerId]: {
+                        ...tower,
+                        items: updatedItems,
                     },
-                };
-            }),
-
-
-    }))
-;
+                },
+            };
+        }),
+}));

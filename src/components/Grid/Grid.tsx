@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useValidCells } from "../../features/Grid/useValidCells.ts";
 import { gridConfig } from "../../features/Grid/gridConfig.ts";
-import { TowerEntity } from "../../entities/towerEntity";
 import { useTowerStore } from "../../state/towerStore.ts";
 import { GridCell } from './GridCell.tsx';
 
@@ -40,18 +39,22 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({ isMurloc }) => {
 
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
-        const tower: TowerEntity = JSON.parse(e.dataTransfer.getData("tower-entity"));
-        const fromCell = e.dataTransfer.getData("from-cell");
-        const rect = e.currentTarget.getBoundingClientRect();
 
+        const towerIdRaw = e.dataTransfer.getData("tower-id");
+        const fromCell = e.dataTransfer.getData("from-cell");
+
+        const towerId = parseInt(towerIdRaw, 10);
+        if (isNaN(towerId)) return;
+
+        const rect = e.currentTarget.getBoundingClientRect();
         const x = Math.floor((e.clientX - rect.left) / cellSize);
         const y = Math.floor((e.clientY - rect.top) / cellSize);
         const key = `${y}-${x}`;
 
         const isValid = validCells.some(cell => cell.row === y && cell.col === x);
-        if (!isValid || !tower) return;
+        if (!isValid) return;
 
-        setTower(key, tower);
+        setTower(key, { id: towerId, items: [] });
 
         if (fromCell && fromCell !== key) {
             setTower(fromCell, null);
@@ -59,6 +62,7 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({ isMurloc }) => {
 
         setSelectedTowerId(key);
     };
+
 
     const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
