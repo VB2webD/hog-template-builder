@@ -1,11 +1,9 @@
 import { create } from 'zustand';
-import { ItemEntity } from '../entities/itemEntity';
 import { flatTowers } from '../features/Towers/towerData.ts';
-
 
 export interface PlacedTower {
     id: number; // reference to flatTowers
-    items: (ItemEntity | null)[];
+    itemsIds: (number | null)[];
 }
 
 type TowerStore = {
@@ -17,7 +15,7 @@ type TowerStore = {
     setTower: (id: string, tower: PlacedTower | null) => void;
     setSelectedTowerId: (id: string | null) => void;
     togglePinnedTower: (id: string) => void;
-    updateItemSlot: (towerId: string, item: ItemEntity | null, toIndex: number, fromIndex: number) => void;
+    updateItemSlot: (towerId: string, itemId: number | null, toIndex: number, fromIndex: number) => void;
 };
 
 export const useTowerStore = create<TowerStore>((set) => ({
@@ -35,15 +33,21 @@ export const useTowerStore = create<TowerStore>((set) => ({
         set((state) => {
             const updated = { ...state.towers };
             if (tower) {
-                updated[gridPosition] = tower;
-                console.log("[ZUSTAND] setTower updated:", gridPosition, tower);
+                const def = flatTowers[tower.id];
+                const slotCount = def?.slots ?? 0;
+                updated[gridPosition] = {
+                    id: tower.id,
+                    itemsIds: Array(slotCount).fill(null),
+                };
+                console.log("[ZUSTAND] setTower updated:", gridPosition, updated[gridPosition]);
             } else {
                 delete updated[gridPosition];
-                console.log("[ZUSTAND] setTower removed:", gridPosition, tower);
+                console.log("[ZUSTAND] setTower removed:", gridPosition);
             }
             return { towers: updated };
         });
     },
+
 
     setSelectedTowerId: (id) => {
         console.log("[ZUSTAND] setSelectedTowerId:", id);
@@ -61,7 +65,7 @@ export const useTowerStore = create<TowerStore>((set) => ({
             return { pinnedTowers: updatedPins };
         }),
 
-    updateItemSlot: (towerId, item, toIndex, fromIndex) =>
+    updateItemSlot: (towerId, itemId, toIndex, fromIndex) =>
         set((state) => {
             const tower = state.towers[towerId];
             if (!tower) return state;
@@ -69,23 +73,23 @@ export const useTowerStore = create<TowerStore>((set) => ({
             const definition = flatTowers[tower.id];
             if (!definition) return state;
 
-            const updatedItems = Array.from(
+            const updatedItemsIds = Array.from(
                 { length: definition.slots },
-                (_, i) => tower.items[i] || null
+                (_, i) => tower.itemsIds[i] ?? null
             );
 
-            updatedItems[toIndex] = item;
+            updatedItemsIds[toIndex] = itemId;
 
             if (fromIndex !== toIndex) {
-                updatedItems[fromIndex] = null;
+                updatedItemsIds[fromIndex] = null;
             }
-
+console.log("updated Items:", updatedItemsIds)
             return {
                 towers: {
                     ...state.towers,
                     [towerId]: {
                         ...tower,
-                        items: updatedItems,
+                        itemsIds: updatedItemsIds,
                     },
                 },
             };

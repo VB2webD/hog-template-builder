@@ -54,7 +54,7 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({ isMurloc }) => {
         const isValid = validCells.some(cell => cell.row === y && cell.col === x);
         if (!isValid) return;
 
-        setTower(key, { id: towerId, items: [] });
+        setTower(key, { id: towerId, itemsIds: [] });
 
         if (fromCell && fromCell !== key) {
             setTower(fromCell, null);

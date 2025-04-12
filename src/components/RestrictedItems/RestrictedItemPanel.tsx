@@ -1,20 +1,20 @@
-import React, {useMemo} from "react";
-import {restrictedItems} from "../../features/Items/restrictedItemData";
-import {RestrictedItemCard} from "./RestrictedItemCard";
+import React, { useMemo } from "react";
+import { flattenedItems } from "../../features/Items/itemData";
+import { RestrictedItemCard } from "./RestrictedItemCard";
 
-interface PanelProbs{
-    name:string;
+interface PanelProps {
+    name: string;
     tier: number;
 }
-export const RestrictedItemPanel: React.FC<PanelProbs> = ({name, tier}) => {
 
-
-
+export const RestrictedItemPanel: React.FC<PanelProps> = ({ name, tier }) => {
     const items = useMemo(() => {
-        if (tier === 3) {
-            return restrictedItems.filter(item => item.restrictedTo === name);
-        }
-        return restrictedItems.filter(item => item.restrictedTo === tier);
+        return Object.entries(flattenedItems)
+            .map(([id, item]) => ({ ...item, id: parseInt(id, 10) }))
+            .filter(item => {
+                if (tier === 3) return item.restrictedTo === name;
+                return item.restrictedTo === tier;
+            });
     }, [name, tier]);
 
     if (!items.length) return null;
@@ -22,7 +22,7 @@ export const RestrictedItemPanel: React.FC<PanelProbs> = ({name, tier}) => {
     return (
         <div className="grid grid-cols-1 gap-2 p-2 bg-gray border border-gray-300">
             {items.map(item => (
-                <RestrictedItemCard key={item.name} item={item}/>
+                <RestrictedItemCard key={item.id} itemId={item.id} />
             ))}
         </div>
     );

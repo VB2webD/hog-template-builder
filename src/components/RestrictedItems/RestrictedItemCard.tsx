@@ -1,22 +1,28 @@
 import React, { useState } from "react";
-import { ItemEntity } from "../../entities/itemEntity";
-import {addItemOnFirstEmptySlot, getItemShadowClass, setItemDragData} from "../../features/Items/itemHelper.ts";
-import {useTowerStore} from "../../state/towerStore.ts";
+import { flattenedItems } from "../../features/Items/itemData";
+import {
+    addItemOnFirstEmptySlot,
+    getItemShadowClass,
+    setItemDragData
+} from "../../features/Items/itemHelper.ts";
+import { useTowerStore } from "../../state/towerStore.ts";
 
 interface RestrictedItemCardProps {
-    item: ItemEntity;
+    itemId: number;
 }
 
-export const RestrictedItemCard: React.FC<RestrictedItemCardProps> = ({ item }) => {
-    const selectedTowerId = useTowerStore(state => state.selectedTowerId)
+export const RestrictedItemCard: React.FC<RestrictedItemCardProps> = ({ itemId }) => {
+    const selectedTowerId = useTowerStore(state => state.selectedTowerId);
     const [hover, setHover] = useState(false);
+    const item = flattenedItems[itemId];
 
+    if (!item) return null;
 
     return (
         <div
             className={`
                 w-16 h-16 border border-gray-300 bg-white flex items-center justify-center
-                ${item ? getItemShadowClass(item) : ""}
+                ${getItemShadowClass(item)}
             `}
             style={{
                 backgroundImage: `url(${item.image})`,
@@ -25,9 +31,11 @@ export const RestrictedItemCard: React.FC<RestrictedItemCardProps> = ({ item }) 
             }}
             draggable
             onDragStart={(e) => {
-                setItemDragData(e, item, -1);
+                setItemDragData(e, itemId, -1);
             }}
-            onDoubleClick={()=>{addItemOnFirstEmptySlot(selectedTowerId,item)}}
+            onDoubleClick={() => {
+                addItemOnFirstEmptySlot(selectedTowerId, itemId);
+            }}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >

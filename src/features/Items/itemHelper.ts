@@ -1,7 +1,7 @@
-import {ItemEntity} from "../../entities/itemEntity";
 import React from "react";
-import {useTowerStore} from "../../state/towerStore.ts";
-
+import { ItemEntity } from "../../entities/itemEntity";
+import { useTowerStore } from "../../state/towerStore.ts";
+import {flatTowers} from "../Towers/towerData.ts";
 
 export function getItemShadowClass(item: ItemEntity): string {
     const name = item.name.toLowerCase();
@@ -16,10 +16,11 @@ export function getItemShadowClass(item: ItemEntity): string {
 
 export function setItemDragData(
     e: React.DragEvent<HTMLDivElement>,
-    item: ItemEntity,
+    itemId: number | null,
     index: number
 ) {
-    e.dataTransfer.setData("item-entity", JSON.stringify(item));
+    if (!itemId) return;
+    e.dataTransfer.setData("item-id", itemId.toString());
     e.dataTransfer.setData("inventory-index", index.toString());
 }
 
@@ -30,31 +31,34 @@ export function handleItemDrop(
 ) {
     e.preventDefault();
 
-    const itemData = e.dataTransfer.getData("item-entity");
-    const fromIndex = parseInt(e.dataTransfer.getData("inventory-index"));
+    const itemIdRaw = e.dataTransfer.getData("item-id");
+    const fromIndex = parseInt(e.dataTransfer.getData("inventory-index"), 10);
+    console.warn("[handleItemDrop] No item-id in dataTransfer");
+    if (!itemIdRaw) return;
 
-    if (!itemData) return;
+    const itemId = parseInt(itemIdRaw, 10);
+    if (isNaN(itemId)) return;
 
-
-    try {
-        const item: ItemEntity = JSON.parse(itemData);
-        const updateItemSlot = useTowerStore.getState().updateItemSlot
-        updateItemSlot(towerId, item, index, isNaN(fromIndex) ? index : fromIndex);
-    } catch (err) {
-        console.error("Failed to parse item-entity", err);
-    }
+    const updateItemSlot = useTowerStore.getState().updateItemSlot;
+    updateItemSlot(towerId, itemId, index, isNaN(fromIndex) ? index : fromIndex);
+    console.log(`[handleItemDrop] itemId=${itemId}, towerId=${towerId}, toIndex=${index}, fromIndex=${fromIndex}`);
 }
 
-export function addItemOnFirstEmptySlot(towerId: string | null, item: ItemEntity) {
-    const tower = towerId ? useTowerStore.getState().towers[towerId] : null;
+export function addItemOnFirstEmptySlot(towerId: string | null, item: number) {
+    if (!towerId) return;
 
-    if (!tower || !towerId) return;
+    const store = useTowerStore.getState();
+    const tower = store.towers[towerId];
+    if (!tower) return;
 
-    const normalizedItems: (ItemEntity | null)[] = Array.from({length: tower.slots}, (_, i) => tower.items[i] ?? null);
+    const def = flatTowers[tower.id];
+    if (!def) return;
+
+    const items = tower.itemsIds ?? [];
+    const normalizedItems = Array.from({ length: def.slots }, (_, i) => items[i] ?? null);
     const emptyIndex = normalizedItems.findIndex(slot => slot === null);
 
     if (emptyIndex === -1) return;
-    const updateItemSlot = useTowerStore.getState().updateItemSlot
-    updateItemSlot(towerId, item, emptyIndex, emptyIndex)
-}
 
+    store.updateItemSlot(towerId, item, emptyIndex, emptyIndex);
+}

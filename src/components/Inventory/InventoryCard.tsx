@@ -1,20 +1,21 @@
 import React from "react";
-import { ItemEntity } from "../../entities/itemEntity";
 import { getItemShadowClass, setItemDragData } from "../../features/Items/itemHelper.ts";
+import { flattenedItems } from "../../features/Items/itemData";
 
 interface InventoryCardProps {
     index: number;
-    item: ItemEntity | null;
+    itemId: number | null;
     onRightClick: (index: number) => void;
     onDrop: (index: number, e: React.DragEvent<HTMLDivElement>) => void;
 }
 
 export const InventoryCard: React.FC<InventoryCardProps> = ({
                                                                 index,
-                                                                item,
+                                                                itemId,
                                                                 onRightClick,
                                                                 onDrop
                                                             }) => {
+    const item = itemId !== null ? flattenedItems[itemId] : null;
 
     const handleRightClick = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -46,13 +47,17 @@ export const InventoryCard: React.FC<InventoryCardProps> = ({
         `,
     };
 
-    return item ? (
-        <div
-            {...commonProps}
-            draggable
-            onDragStart={(e) => setItemDragData(e, item, index)}
-        />
-    ) : (
+    if (item) {
+        return (
+            <div
+                {...commonProps}
+                draggable
+                onDragStart={(e) => setItemDragData(e, itemId, index)}
+            />
+        );
+    }
+
+    return (
         <div {...commonProps}>
             <span className="text-xs text-gray-400">Empty</span>
         </div>

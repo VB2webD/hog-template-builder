@@ -1,23 +1,27 @@
 import React, { useState } from "react";
-import { ItemEntity } from "../../entities/itemEntity";
 import { useTowerStore } from "../../state/towerStore.ts";
-import {addItemOnFirstEmptySlot} from "../../features/Items/itemHelper.ts";
+import { addItemOnFirstEmptySlot } from "../../features/Items/itemHelper.ts";
+import { flattenedItems } from "../../features/Items/itemData.ts";
 
 interface ItemCardProps {
-    item: ItemEntity;
+    id: number;
 }
 
-export const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
+export const ItemCard: React.FC<ItemCardProps> = ({ id }) => {
     const selectedTowerId = useTowerStore(state => state.selectedTowerId);
     const [hover, setHover] = useState(false);
+    const item = flattenedItems[id];
 
     return (
         <div
             className="w-16 h-16 cursor-move relative rounded border bg-white"
             draggable
-            onDoubleClick={() => {addItemOnFirstEmptySlot(selectedTowerId,item)}
-            }
-            onDragStart={(e)=> e.dataTransfer.setData("item-entity", JSON.stringify(item))}
+            onDoubleClick={() => {
+                if (selectedTowerId !== null) {
+                    addItemOnFirstEmptySlot(selectedTowerId, id);
+                }
+            }}
+            onDragStart={(e) => e.dataTransfer.setData("item-id", id.toString())}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
             style={{
