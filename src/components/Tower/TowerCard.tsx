@@ -1,25 +1,19 @@
-import React, {useState} from "react";
-import {TowerEntity} from "../../entities/towerEntity.ts";
+import React, { useState } from "react";
 
 export interface TowerCardProps {
+    id: number;
     name: string;
     image: string;
     tier: number;
     slots: number;
 }
 
-export const TowerCard: React.FC<TowerCardProps> = ({name, image, tier,slots}) => {
+export const TowerCard: React.FC<TowerCardProps> = ({ id, name, image }) => {
     const [hover, setHover] = useState(false);
 
     const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-        const towerEntity: TowerEntity = {
-            name,
-            image,
-            tier,
-            items: [],
-            slots: slots
-        };
-        e.dataTransfer.setData("tower-entity", JSON.stringify(towerEntity));
+        // Pass only the ID to be interpreted on drop
+        e.dataTransfer.setData("tower-id", id.toString());
     };
 
     return (
@@ -32,11 +26,11 @@ export const TowerCard: React.FC<TowerCardProps> = ({name, image, tier,slots}) =
             style={{
                 backgroundImage: `url(${image})`,
                 backgroundSize: "cover",
-                backgroundPosition: "center"
+                backgroundPosition: "center",
             }}
         >
             {hover && (
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 bg-gray-800 text-white text-xs rounded px-2 py-1 shadow-lg z-10">
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 bg-gray-800 text-white text-xs rounded px-2 py-1 shadow-lg z-10 whitespace-nowrap">
                     <div className="font-bold">{name}</div>
                 </div>
             )}
