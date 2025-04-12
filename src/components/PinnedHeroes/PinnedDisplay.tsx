@@ -10,10 +10,10 @@ export const PinnedDisplay: React.FC = () => {
         <div className="grid grid-cols-2 gap-4 justify-center items-start">
             {Array.from({ length: 4 }, (_, index) => {
                 const towerId = pinnedTowers[index];
-                const tower = towerId ? towers[towerId] : null;
+                const placedTower = towerId ? towers[towerId] : null;
 
-                return tower ? (
-                    <Inventory key={towerId} towerId={towerId}/>
+                return placedTower ? (
+                    <Inventory key={towerId} towerId={towerId} placedTower={placedTower} />
                 ) : (
                     <div
                         key={`placeholder-${index}`}

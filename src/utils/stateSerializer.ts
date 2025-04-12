@@ -1,17 +1,19 @@
 // src/utils/stateSerializer.ts
 import LZString from "lz-string";
-import { TowerEntity } from "../entities/towerEntity";
+import { PlacedTower } from "../state/towerStore";
 
-export type TowerStoreState = {
-    towers: Record<string, TowerEntity>;
-    selectedTowerId: string | null;
-}
+// Define only the fields that need to be persisted
+export type SerializedTowerState = {
+    title: string;
+    towers: Record<string, PlacedTower>;
+    pinnedTowers: string[];
+};
 
-export function compressState(state: TowerStoreState): string {
+export function compressState(state: SerializedTowerState): string {
     return LZString.compressToEncodedURIComponent(JSON.stringify(state));
 }
 
-export function decompressState(compressed: string): TowerStoreState | null {
+export function decompressState(compressed: string): SerializedTowerState | null {
     try {
         const json = LZString.decompressFromEncodedURIComponent(compressed);
         return json ? JSON.parse(json) : null;

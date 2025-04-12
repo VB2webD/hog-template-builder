@@ -9,16 +9,33 @@ export interface PlacedTower {
 type TowerStore = {
     title: string;
     setTitle: (title: string) => void;
+
     towers: Record<string, PlacedTower>;
     selectedTowerId: string | null;
     pinnedTowers: string[];
+
     setTower: (id: string, tower: PlacedTower | null) => void;
     setSelectedTowerId: (id: string | null) => void;
     togglePinnedTower: (id: string) => void;
-    updateItemSlot: (towerId: string, itemId: number | null, toIndex: number, fromIndex: number) => void;
+
+    updateItemSlot: (
+        towerId: string,
+        itemId: number | null,
+        toIndex: number,
+        fromIndex: number
+    ) => void;
+
+    // 👇 Added for URL persistence
+    getPersistedState: () => {
+        title: string;
+        towers: Record<string, PlacedTower>;
+        pinnedTowers: string[];
+    };
+
+    loadPersistedState: (persisted: Partial<Pick<TowerStore, "title" | "towers" | "pinnedTowers">>) => void;
 };
 
-export const useTowerStore = create<TowerStore>((set) => ({
+export const useTowerStore = create<TowerStore>((set, get) => ({
     title: '',
     setTitle: (title) => {
         console.log("[ZUSTAND] setTitle:", title);
@@ -83,7 +100,7 @@ export const useTowerStore = create<TowerStore>((set) => ({
             if (fromIndex !== toIndex) {
                 updatedItemsIds[fromIndex] = null;
             }
-console.log("updated Items:", updatedItemsIds)
+
             return {
                 towers: {
                     ...state.towers,
@@ -94,4 +111,17 @@ console.log("updated Items:", updatedItemsIds)
                 },
             };
         }),
+
+    getPersistedState: () => {
+        const { title, towers, pinnedTowers } = get();
+        return { title, towers, pinnedTowers };
+    },
+
+    loadPersistedState: (persisted: Partial<TowerStore>) => {
+        set({
+            title: persisted.title ?? '',
+            towers: persisted.towers ?? {},
+            pinnedTowers: persisted.pinnedTowers ?? [],
+        });
+    }
 }));
