@@ -11,7 +11,7 @@ export enum ItemTags {
     Aura,
     Reset,
     Active,
-    Orb,
+    Effect,
     Stun,
     Silence,
     Burn,
@@ -26,7 +26,8 @@ export enum ItemTags {
     AttackDamage,
     skillUpgrade,
     LevelFive,
-    LimitOne
+    LimitOne,
+    Resistance
 }
 
 export interface ItemEntity {

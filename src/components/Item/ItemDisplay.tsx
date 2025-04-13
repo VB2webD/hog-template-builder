@@ -10,12 +10,12 @@ export const ItemDisplay: React.FC = () => {
         ItemTags.Slow,
         ItemTags.ArmorReduction,
         ItemTags.Summon,
-        ItemTags.Orb,
+        ItemTags.Effect,
         ItemTags.Aura,
         ItemTags.Reset,
         ItemTags.Upgraded,
         ItemTags.Potion,
-        ItemTags.Silence,
+        ItemTags.Resistance,
     ];
 
     const itemsArray = Object.entries(itemData)
