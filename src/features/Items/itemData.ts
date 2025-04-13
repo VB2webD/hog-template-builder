@@ -33,7 +33,7 @@ export enum ItemRestriction {
     Do = 'Dragonspawn Overseer',
 }
 
-const {Ancient, Potion, Slow, Armor, Summon, Aura, Reset, Active, Orb, Stun,Silence, Burn, Crit, Spell, ManaRegen, Unique,Heroic, Upgraded,Stack, AttackSpeed, AttackDamage, skillUpgrade, LevelFive, LimitOne} = ItemTags
+const {Ancient, Potion, Slow, ArmorReduction, Summon, Aura, Reset, Active, Orb, Stun,Silence, Burn, Crit, Spell, ManaRegen, Unique,Heroic, Upgraded,Stack, AttackSpeed, AttackDamage, skillUpgrade, LevelFive, LimitOne} = ItemTags
 export const itemData: Record<number, ItemEntity> = {
 
     // Slow Auras
@@ -43,11 +43,11 @@ export const itemData: Record<number, ItemEntity> = {
     3: { name: "Staff of Negation", image: "/items/slow/slowT3.webp", tier: 3, tags: [Slow,Aura,Active, Upgraded],restrictedTo: null, stats: {str: 36, agi: 36, int: 36}, passive: "Slows nearby enemies by 30%", active: "150 random stat" },
 
     // -Armor Effects
-    4: { name: "Orb of Darkness", image: "/items/-armor/orbT1.webp", tier: 1, tags: [Armor, Orb], restrictedTo: null, stats: { str:10, agi:10, int:5 }, passive: "Attacks reduce enemy armor by 2 for 5 seconds" },
-    5: { name: "Orb of Corruption", image: "/items/-armor/orbT2.webp", tier: 2, tags: [Armor, Orb],restrictedTo: null, stats: { str:20, agi:20, int:10 }, passive: "Attacks reduce enemy armor by 4 for 5 seconds" },
-    6: { name: "Wand of Shadowsight", image: "/items/-armor/armorAuraT2.png", tier: 2,tags: [Armor, Aura], restrictedTo: null, stats: { str:16, agi:16, int:16}, passive: "Reduces armor of nearby enemies by 4" },
-    7: { name: "Phoenix Egg", image: "/items/-armor/armorAuraT3.webp", tier: 3, tags: [Armor, Aura],restrictedTo: null, stats: { str:32, agi:32, int:32 }, passive: "Reduces armor of nearby enemies by 6" },
-    8: { name: "Phoenix Egg", image: "/items/-armor/armorAuraT3.webp", tier: 3, tags: [Armor, Aura, Active, Upgraded],restrictedTo: null, stats: { str:32, agi:32, int:32 }, passive: "Reduces armor of nearby enemies by 6", active: "150 random stat" },
+    4: { name: "Orb of Darkness", image: "/items/-armor/orbT1.webp", tier: 1, tags: [ArmorReduction, Orb], restrictedTo: null, stats: { str:10, agi:10, int:5 }, passive: "Attacks reduce enemy armor by 2 for 5 seconds" },
+    5: { name: "Orb of Corruption", image: "/items/-armor/orbT2.webp", tier: 2, tags: [ArmorReduction, Orb],restrictedTo: null, stats: { str:20, agi:20, int:10 }, passive: "Attacks reduce enemy armor by 4 for 5 seconds" },
+    6: { name: "Wand of Shadowsight", image: "/items/-armor/armorAuraT2.png", tier: 2,tags: [ArmorReduction, Aura], restrictedTo: null, stats: { str:16, agi:16, int:16}, passive: "Reduces armor of nearby enemies by 4" },
+    7: { name: "Phoenix Egg", image: "/items/-armor/armorAuraT3.webp", tier: 3, tags: [ArmorReduction, Aura],restrictedTo: null, stats: { str:32, agi:32, int:32 }, passive: "Reduces armor of nearby enemies by 6" },
+    8: { name: "Phoenix Egg", image: "/items/-armor/armorAuraT3.webp", tier: 3, tags: [ArmorReduction, Aura, Active, Upgraded],restrictedTo: null, stats: { str:32, agi:32, int:32 }, passive: "Reduces armor of nearby enemies by 6", active: "150 random stat" },
 
     // summon auras
     9: { name: "Staff of Reanimation", image: "/items/summonAuras/summonAuraT2.png", tier: 2, tags: [Summon, Aura], restrictedTo: null,stats: { str:15, agi:15, int:15 }, passive: "Nearby summons/illusions gain +15% movement speed and 10% attack speed" },
@@ -128,7 +128,7 @@ export const itemData: Record<number, ItemEntity> = {
     65: { name: "Ank of Reincarnation", image: "/items/ank.webp", tier: 3, tags: [Ancient, skillUpgrade, LevelFive], restrictedTo: ItemRestriction.Tier2, stats: {str:0, agi:0, int:0}, passive: "Increases passive skill+1, 150 main attribute" },
 
     // Kael
-    66: { name: "Gloves of Spell Mastery", image: "/items/uniques/human/kaelUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne, Armor], restrictedTo: ItemRestriction.Kael, stats: {str: 50, agi: 50, int: 100}, passive: "Increases passive Skill +1" },
+    66: { name: "Gloves of Spell Mastery", image: "/items/uniques/human/kaelUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne, ArmorReduction], restrictedTo: ItemRestriction.Kael, stats: {str: 50, agi: 50, int: 100}, passive: "Increases passive Skill +1" },
     67: { name: "Gloves of Spell Mastery", image: "/items/uniques/human/kaelUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Kael, stats: {str: 0, agi: 0, int: 0}, passive:""},
 
     // Uther

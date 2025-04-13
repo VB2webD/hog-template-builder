@@ -1,4 +1,4 @@
-import {ItemRestriction} from "../features/Items/restrictedItemData.ts";
+import {ItemRestriction} from "../features/Items/itemData.ts";
 
 export type ItemStats = { str: number, agi: number, int: number }
 
@@ -6,7 +6,7 @@ export enum ItemTags {
     Ancient,
     Potion,
     Slow,
-    Armor,
+    ArmorReduction,
     Summon,
     Aura,
     Reset,

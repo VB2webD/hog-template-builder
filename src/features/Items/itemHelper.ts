@@ -5,9 +5,9 @@ import {flatTowers} from "../Towers/towerData.ts";
 
 
 const tagShadows: Partial<Record<ItemTags, string>> = {
-    [ItemTags.Unique]: "shadow-[0_0_6px_3px_rgba(255,215,0,0.8)]",
-    [ItemTags.Heroic]: "shadow-[0_0_6px_3px_rgba(139,0,0,0.8)]",
-    [ItemTags.Upgraded]:"shadow-[0_0_6px_3px_rgba(139,0,0,0.8)]"
+    [ItemTags.Unique]: "shadow-[0_0_6px_5px_rgba(255,215,0,0.8)]",
+    [ItemTags.Heroic]: "shadow-[0_0_6px_5px_rgba(139,0,0,0.8)]",
+    [ItemTags.Upgraded]:"shadow-[0_0_6px_5px_rgba(139,0,0,1)]"
 };
 
 export function getItemShadowClass(tags: ItemTags[]): string {

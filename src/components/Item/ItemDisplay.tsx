@@ -8,7 +8,7 @@ export const ItemDisplay: React.FC = () => {
 
     const filterableTags: ItemTags[] = [
         ItemTags.Slow,
-        ItemTags.Armor,
+        ItemTags.ArmorReduction,
         ItemTags.Summon,
         ItemTags.Orb,
         ItemTags.Aura,
@@ -16,7 +16,6 @@ export const ItemDisplay: React.FC = () => {
         ItemTags.Upgraded,
         ItemTags.Potion,
         ItemTags.Silence,
-        ItemTags.Stun,
     ];
 
     const itemsArray = Object.entries(itemData)
