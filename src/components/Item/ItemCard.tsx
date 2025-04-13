@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTowerStore } from "../../state/towerStore.ts";
-import { addItemOnFirstEmptySlot } from "../../features/Items/itemHelper.ts";
+import {addItemOnFirstEmptySlot, getItemShadowClass} from "../../features/Items/itemHelper.ts";
 import { flattenedItems } from "../../features/Items/itemData.ts";
 
 interface ItemCardProps {
@@ -14,7 +14,8 @@ export const ItemCard: React.FC<ItemCardProps> = ({ id }) => {
 
     return (
         <div
-            className="w-16 h-16 cursor-move relative rounded border bg-white"
+            className={`w-16 h-16 cursor-move relative rounded border bg-white ${getItemShadowClass(item.tags)}
+            `}
             draggable
             onDoubleClick={() => {
                 if (selectedTowerId !== null) {

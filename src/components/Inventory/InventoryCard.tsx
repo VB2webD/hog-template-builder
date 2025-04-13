@@ -43,7 +43,7 @@ export const InventoryCard: React.FC<InventoryCardProps> = ({
         },
         className: `
             w-16 h-16 border border-gray-300 bg-white flex items-center justify-center
-            ${item ? getItemShadowClass(item) : ""}
+            ${item ? getItemShadowClass(item.tags) : ""}
         `,
     };
 

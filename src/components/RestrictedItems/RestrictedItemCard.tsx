@@ -22,7 +22,7 @@ export const RestrictedItemCard: React.FC<RestrictedItemCardProps> = ({ itemId }
         <div
             className={`
                 w-16 h-16 border border-gray-300 bg-white flex items-center justify-center
-                ${getItemShadowClass(item)}
+                ${getItemShadowClass(item.tags)}
             `}
             style={{
                 backgroundImage: `url(${item.image})`,

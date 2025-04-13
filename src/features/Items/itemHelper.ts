@@ -1,15 +1,21 @@
 import React from "react";
-import { ItemEntity } from "../../entities/itemEntity";
-import { useTowerStore } from "../../state/towerStore.ts";
+import {ItemTags} from "../../entities/itemEntity";
+import {useTowerStore} from "../../state/towerStore.ts";
 import {flatTowers} from "../Towers/towerData.ts";
 
-export function getItemShadowClass(item: ItemEntity): string {
-    const name = item.name.toLowerCase();
-    if (name.includes("unique")) {
-        return "shadow-[0_0_6px_3px_rgba(255,215,0,0.8)]";
-    }
-    if (name.includes("heroic")) {
-        return "shadow-[0_0_6px_3px_rgba(139,0,0,0.8)]";
+
+const tagShadows: Partial<Record<ItemTags, string>> = {
+    [ItemTags.Unique]: "shadow-[0_0_6px_3px_rgba(255,215,0,0.8)]",
+    [ItemTags.Heroic]: "shadow-[0_0_6px_3px_rgba(139,0,0,0.8)]",
+    [ItemTags.Upgraded]:"shadow-[0_0_6px_3px_rgba(139,0,0,0.8)]"
+};
+
+export function getItemShadowClass(tags: ItemTags[]): string {
+    for (const tag of tags) {
+        const shadow = tagShadows[tag];
+        if (shadow) {
+            return shadow;
+        }
     }
     return "";
 }
@@ -55,7 +61,7 @@ export function addItemOnFirstEmptySlot(towerId: string | null, item: number) {
     if (!def) return;
 
     const items = tower.itemsIds ?? [];
-    const normalizedItems = Array.from({ length: def.slots }, (_, i) => items[i] ?? null);
+    const normalizedItems = Array.from({length: def.slots}, (_, i) => items[i] ?? null);
     const emptyIndex = normalizedItems.findIndex(slot => slot === null);
 
     if (emptyIndex === -1) return;
