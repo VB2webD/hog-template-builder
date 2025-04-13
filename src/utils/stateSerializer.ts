@@ -7,6 +7,7 @@ export type SerializedTowerState = {
     title: string;
     towers: Record<string, PlacedTower>;
     pinnedTowers: string[];
+    selectedtowerId: string | null;
 };
 
 export function compressState(state: SerializedTowerState): string {

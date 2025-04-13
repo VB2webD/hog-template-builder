@@ -30,9 +30,10 @@ type TowerStore = {
         title: string;
         towers: Record<string, PlacedTower>;
         pinnedTowers: string[];
+        selectedTowerId: string| null;
     };
 
-    loadPersistedState: (persisted: Partial<Pick<TowerStore, "title" | "towers" | "pinnedTowers">>) => void;
+    loadPersistedState: (persisted: Partial<Pick<TowerStore, "title" | "towers" | "pinnedTowers"| "selectedTowerId">>) => void;
 };
 
 export const useTowerStore = create<TowerStore>((set, get) => ({
@@ -113,8 +114,8 @@ export const useTowerStore = create<TowerStore>((set, get) => ({
         }),
 
     getPersistedState: () => {
-        const { title, towers, pinnedTowers } = get();
-        return { title, towers, pinnedTowers };
+        const { title, towers, pinnedTowers, selectedTowerId } = get();
+        return { title, towers, pinnedTowers, selectedTowerId };
     },
 
     loadPersistedState: (persisted: Partial<TowerStore>) => {
@@ -122,6 +123,7 @@ export const useTowerStore = create<TowerStore>((set, get) => ({
             title: persisted.title ?? '',
             towers: persisted.towers ?? {},
             pinnedTowers: persisted.pinnedTowers ?? [],
+            selectedTowerId: persisted.selectedTowerId ?? null,
         });
     }
 }));
