@@ -34,7 +34,7 @@ export enum ItemRestriction {
 }
 
 const {Ancient, Potion, Slow, Armor, Summon, Aura, Reset, Active, Orb, Stun,Silence, Burn, Crit, Spell, ManaRegen, Unique,Heroic, Upgraded,Stack, AttackSpeed, AttackDamage, skillUpgrade, LevelFive, LimitOne} = ItemTags
-export const flattenedItems: Record<number, ItemEntity> = {
+export const itemData: Record<number, ItemEntity> = {
 
     // Slow Auras
     0: { name: "Wand of the Wind", image: "/items/slow/slowT1.png", tier: 1, tags: [Slow,Aura],restrictedTo: null, stats: {str: 9, agi: 9, int: 9}, passive: "Slows nearby enemies by 10%" },
@@ -145,7 +145,7 @@ export const flattenedItems: Record<number, ItemEntity> = {
 
     // Grom
     74: { name: "Hood of Cunning", image: "/items/uniques/orc/gromUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Grom, stats: {str: 50, agi: 100, int: 50}, passive: "Increases passive Skill +1" },
-    75: { name: "Hood of Cunning", image: "/items/uniquesorc/gromUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Grom, stats: {str: 0, agi: 0, int: 0}, passive:"" },
+    75: { name: "Hood of Cunning", image: "/items/uniques/orc/gromUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Grom, stats: {str: 0, agi: 0, int: 0}, passive:"" },
 
     // Gul'dan
     76: { name: "Skull of Gul'dan", image: "/items/uniques/orc/gulUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Gul, stats: {str: 100, agi: 50, int: 50}, passive: "Increases passive Skill +1" },

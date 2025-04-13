@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { flattenedItems } from "../../features/Items/itemData";
+import { itemData } from "../../features/Items/itemData";
 import {
     addItemOnFirstEmptySlot,
     getItemShadowClass,
@@ -14,7 +14,7 @@ interface RestrictedItemCardProps {
 export const RestrictedItemCard: React.FC<RestrictedItemCardProps> = ({ itemId }) => {
     const selectedTowerId = useTowerStore(state => state.selectedTowerId);
     const [hover, setHover] = useState(false);
-    const item = flattenedItems[itemId];
+    const item = itemData[itemId];
 
     if (!item) return null;
 

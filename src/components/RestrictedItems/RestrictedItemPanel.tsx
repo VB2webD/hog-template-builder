@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { flattenedItems } from "../../features/Items/itemData";
+import { itemData } from "../../features/Items/itemData";
 import { RestrictedItemCard } from "./RestrictedItemCard";
 
 interface PanelProps {
@@ -9,7 +9,7 @@ interface PanelProps {
 
 export const RestrictedItemPanel: React.FC<PanelProps> = ({ name, tier }) => {
     const items = useMemo(() => {
-        return Object.entries(flattenedItems)
+        return Object.entries(itemData)
             .map(([id, item]) => ({ ...item, id: parseInt(id, 10) }))
             .filter(item => {
                 if (tier === 3) return item.restrictedTo === name;

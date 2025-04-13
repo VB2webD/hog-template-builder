@@ -1,6 +1,6 @@
 import React from "react";
 import { getItemShadowClass, setItemDragData } from "../../features/Items/itemHelper.ts";
-import { flattenedItems } from "../../features/Items/itemData";
+import { itemData } from "../../features/Items/itemData";
 
 interface InventoryCardProps {
     index: number;
@@ -15,7 +15,7 @@ export const InventoryCard: React.FC<InventoryCardProps> = ({
                                                                 onRightClick,
                                                                 onDrop
                                                             }) => {
-    const item = itemId !== null ? flattenedItems[itemId] : null;
+    const item = itemId !== null ? itemData[itemId] : null;
 
     const handleRightClick = (e: React.MouseEvent) => {
         e.preventDefault();

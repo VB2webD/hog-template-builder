@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTowerStore } from "../../state/towerStore.ts";
 import {addItemOnFirstEmptySlot, getItemShadowClass} from "../../features/Items/itemHelper.ts";
-import { flattenedItems } from "../../features/Items/itemData.ts";
+import { itemData } from "../../features/Items/itemData.ts";
 
 interface ItemCardProps {
     id: number;
@@ -10,7 +10,7 @@ interface ItemCardProps {
 export const ItemCard: React.FC<ItemCardProps> = ({ id }) => {
     const selectedTowerId = useTowerStore(state => state.selectedTowerId);
     const [hover, setHover] = useState(false);
-    const item = flattenedItems[id];
+    const item = itemData[id];
 
     return (
         <div
