@@ -1,5 +1,5 @@
 import React from "react";
-import { getItemShadowClass, setItemDragData } from "../../features/Items/itemHelper.ts";
+import {getItemShadowClass, handleItemHover, setItemDragData} from "../../features/Items/itemHelper.ts";
 import { itemData } from "../../features/Items/itemData";
 
 interface InventoryCardProps {
@@ -52,6 +52,8 @@ export const InventoryCard: React.FC<InventoryCardProps> = ({
                 {...commonProps}
                 draggable
                 onDragStart={(e) => setItemDragData(e, itemId, index)}
+                onMouseEnter={() => handleItemHover(itemId)}
+                onMouseLeave={() => handleItemHover(null)}
             />
         );
     }

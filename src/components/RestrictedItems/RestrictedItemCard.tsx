@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+
 import { itemData } from "../../features/Items/itemData";
 import {
     addItemOnFirstEmptySlot,
-    getItemShadowClass,
+    getItemShadowClass, handleItemHover,
     setItemDragData
 } from "../../features/Items/itemHelper.ts";
 import { useTowerStore } from "../../state/towerStore.ts";
@@ -13,7 +13,6 @@ interface RestrictedItemCardProps {
 
 export const RestrictedItemCard: React.FC<RestrictedItemCardProps> = ({ itemId }) => {
     const selectedTowerId = useTowerStore(state => state.selectedTowerId);
-    const [hover, setHover] = useState(false);
     const item = itemData[itemId];
 
     if (!item) return null;
@@ -36,14 +35,9 @@ export const RestrictedItemCard: React.FC<RestrictedItemCardProps> = ({ itemId }
             onDoubleClick={() => {
                 addItemOnFirstEmptySlot(selectedTowerId, itemId);
             }}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
+            onMouseEnter={() => { handleItemHover(itemId)}}
+            onMouseLeave={() => { handleItemHover(null)}}
         >
-            {hover && (
-                <div className="absolute left-1/2 bottom-[-1.5rem] transform -translate-x-1/2 px-2 py-1 text-xs bg-black text-white bg-opacity-80 rounded whitespace-nowrap pointer-events-none">
-                    {item.name} (Tier {item.tier})
-                </div>
-            )}
         </div>
     );
 };

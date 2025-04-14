@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { flatTowers } from '../features/Towers/towerData.ts';
+import {create} from 'zustand';
+import {flatTowers} from '../features/Towers/towerData.ts';
 
 export interface PlacedTower {
     id: number; // reference to flatTowers
@@ -18,6 +18,9 @@ type TowerStore = {
     setSelectedTowerId: (id: string | null) => void;
     togglePinnedTower: (id: string) => void;
 
+    hoveredItemId: number | null;
+    setHoveredItemId: (id: number | null) => void;
+
     updateItemSlot: (
         towerId: string,
         itemId: number | null,
@@ -30,17 +33,17 @@ type TowerStore = {
         title: string;
         towers: Record<string, PlacedTower>;
         pinnedTowers: string[];
-        selectedTowerId: string| null;
+        selectedTowerId: string | null;
     };
 
-    loadPersistedState: (persisted: Partial<Pick<TowerStore, "title" | "towers" | "pinnedTowers"| "selectedTowerId">>) => void;
+    loadPersistedState: (persisted: Partial<Pick<TowerStore, "title" | "towers" | "pinnedTowers" | "selectedTowerId">>) => void;
 };
 
 export const useTowerStore = create<TowerStore>((set, get) => ({
     title: '',
     setTitle: (title) => {
         console.log("[ZUSTAND] setTitle:", title);
-        set({ title });
+        set({title});
     },
 
     towers: {},
@@ -49,7 +52,7 @@ export const useTowerStore = create<TowerStore>((set, get) => ({
 
     setTower: (gridPosition, tower) => {
         set((state) => {
-            const updated = { ...state.towers };
+            const updated = {...state.towers};
             if (tower) {
                 const def = flatTowers[tower.id];
                 const slotCount = def?.slots ?? 0;
@@ -62,14 +65,14 @@ export const useTowerStore = create<TowerStore>((set, get) => ({
                 delete updated[gridPosition];
                 console.log("[ZUSTAND] setTower removed:", gridPosition);
             }
-            return { towers: updated };
+            return {towers: updated};
         });
     },
 
 
     setSelectedTowerId: (id) => {
         console.log("[ZUSTAND] setSelectedTowerId:", id);
-        set({ selectedTowerId: id });
+        set({selectedTowerId: id});
     },
 
     togglePinnedTower: (id) =>
@@ -80,8 +83,11 @@ export const useTowerStore = create<TowerStore>((set, get) => ({
                 : [...state.pinnedTowers, id];
 
             console.log("[ZUSTAND] Toggled pinned tower:", id, "→", updatedPins);
-            return { pinnedTowers: updatedPins };
+            return {pinnedTowers: updatedPins};
         }),
+
+    hoveredItemId: null,
+    setHoveredItemId: (id) => set({ hoveredItemId: id }),
 
     updateItemSlot: (towerId, itemId, toIndex, fromIndex) =>
         set((state) => {
@@ -92,7 +98,7 @@ export const useTowerStore = create<TowerStore>((set, get) => ({
             if (!definition) return state;
 
             const updatedItemsIds = Array.from(
-                { length: definition.slots },
+                {length: definition.slots},
                 (_, i) => tower.itemsIds[i] ?? null
             );
 
@@ -114,8 +120,8 @@ export const useTowerStore = create<TowerStore>((set, get) => ({
         }),
 
     getPersistedState: () => {
-        const { title, towers, pinnedTowers, selectedTowerId } = get();
-        return { title, towers, pinnedTowers, selectedTowerId };
+        const {title, towers, pinnedTowers, selectedTowerId} = get();
+        return {title, towers, pinnedTowers, selectedTowerId};
     },
 
     loadPersistedState: (persisted: Partial<TowerStore>) => {

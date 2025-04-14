@@ -11,7 +11,7 @@ export const PinnedDisplay: React.FC = () => {
             {Array.from({ length: 6 }, (_, index) => {
                 const towerId = pinnedTowers[index];
                 const placedTower = towerId ? towers[towerId] : null;
-                
+
                 return placedTower ? (
                     <Inventory key={towerId} towerId={towerId} placedTower={placedTower} />
                 ) : null;

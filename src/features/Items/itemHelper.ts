@@ -22,6 +22,11 @@ export function getItemShadowClass(tags: ItemTags[]): string {
     return "";
 }
 
+export function handleItemHover(id: number | null) {
+    const store = useTowerStore.getState();
+    store.setHoveredItemId(id ?? -1);
+}
+
 export function setItemDragData(
     e: React.DragEvent<HTMLDivElement>,
     itemId: number | null,
