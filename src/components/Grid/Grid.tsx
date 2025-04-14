@@ -72,7 +72,7 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({ isMurloc }) => {
 
     return (
         <div
-            className="relative"
+            className="relative select-none"
             onMouseMove={handleMouseMove}
             onContextMenu = {handleRightClick}
             onMouseLeave={handleMouseLeave}

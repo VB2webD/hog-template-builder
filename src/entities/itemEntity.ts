@@ -3,6 +3,7 @@ import {ItemRestriction} from "../features/Items/itemData.ts";
 export type ItemStats = { str: number, agi: number, int: number }
 
 export enum ItemTags {
+    Quick,
     Ancient,
     Potion,
     Slow,

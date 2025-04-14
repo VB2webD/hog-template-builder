@@ -28,7 +28,7 @@ export const TowerDisplay: React.FC = () => {
 
 
     return (
-        <div className="p-4 bg-gray-100 border rounded shadow w-full max-w-5xl">
+        <div className="p-4 bg-gray-100 border rounded shadow max-w-2xl">
             {/* Race Tabs */}
             <div className="flex justify-center gap-2 mb-2">
                 {Object.values(Race).map((race) => (
@@ -47,11 +47,14 @@ export const TowerDisplay: React.FC = () => {
             </div>
 
             {/* Tiered Grid */}
-            <div className="space-y-2">
-                {[1, 2, 3].map((tier) => (
-                    <div key={tier} className={`p-2 rounded ${tierColors[tier as 1 | 2 | 3]}`}>
+            {([1, 2, 3] as const).map((tier) => {
+                const towers = groupedByTier[tier];
+                if (towers.length === 0) return null;
+
+                return (
+                    <div key={tier} className={`p-2 rounded ${tierColors[tier]}`}>
                         <div className="grid grid-cols-5 gap-2 justify-items-center">
-                            {groupedByTier[tier as 1 | 2 | 3].map((tower) => (
+                            {towers.map((tower) => (
                                 <TowerCard
                                     key={tower.id}
                                     id={tower.id}
@@ -63,8 +66,9 @@ export const TowerDisplay: React.FC = () => {
                             ))}
                         </div>
                     </div>
-                ))}
-            </div>
+                );
+            })}
+
         </div>
     );
 };

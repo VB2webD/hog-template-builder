@@ -52,7 +52,7 @@ export const GridCell: React.FC<GridItemProps> = ({
                     e.dataTransfer.setData("from-cell", cellKey);
                 }
             }}
-            className={`absolute border border-gray-300 transition-colors duration-200
+            className={`absolute border bg-white-1000 transition-colors duration-200
                 ${cell ? 'cursor-pointer' : 'opacity-30 pointer-events-none'}
                 ${isSelected ? 'bg-green-300' : isHovered ? 'bg-blue-200' : ''}
             `}

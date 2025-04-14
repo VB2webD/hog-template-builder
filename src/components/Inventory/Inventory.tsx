@@ -3,7 +3,7 @@ import { InventoryCard } from "./InventoryCard";
 import { useTowerStore } from "../../state/towerStore";
 import { flatTowers } from "../../features/Towers/towerData";
 import { handleItemDrop } from "../../features/Items/itemHelper";
-import { PinButton } from "./PinButton";
+import { PinButton } from "../Buttons/PinButton.tsx";
 import { PlacedTower } from "../../state/towerStore";
 
 interface InventoryProps {
@@ -31,15 +31,15 @@ export const Inventory: React.FC<InventoryProps> = ({ towerId, placedTower }) =>
     };
 
     return (
-        <div className="inline-block bg-gray-100 border rounded shadow relative pt-14 px-4 pb-4 min-h-[192px] min-w-[144px]">
-            <PinButton towerId={towerId} />
+        <div className="inline-block bg-gray-100 border rounded shadow relative pt-14 px-1 pb-1 min-h-[192px] min-w-[144px]">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <img
                     src={definition?.image || "/placeholder.webp"}
                     alt="Tower preview"
-                    className="w-20 h-20 object-contain border bg-white"
+                    className="w-17 h-17 object-contain border bg-white"
                 />
             </div>
+            <PinButton towerId={towerId} />
             <div className="grid grid-cols-2 grid-rows-3 gap-1 justify-center items-start">
                 {Array.from({ length: 6 }, (_, index) => {
                     const itemId = normalizedItems[index];

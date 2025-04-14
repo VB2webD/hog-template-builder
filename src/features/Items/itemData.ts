@@ -33,25 +33,25 @@ export enum ItemRestriction {
     Do = 'Dragonspawn Overseer',
 }
 
-const {Ancient, Potion, Slow, ArmorReduction, Summon, Aura, Reset, Active, Effect, Stun,Silence, Burn, Crit, Spell, ManaRegen, Unique,Heroic, Upgraded,Stack, AttackSpeed, AttackDamage, skillUpgrade, LevelFive, LimitOne, Resistance} = ItemTags
+const {Quick, Ancient, Potion, Slow, ArmorReduction, Summon, Aura, Reset, Active, Effect, Stun,Silence, Burn, Crit, Spell, ManaRegen, Unique,Heroic, Upgraded,Stack, AttackSpeed, AttackDamage, skillUpgrade, LevelFive, LimitOne, Resistance} = ItemTags
 export const itemData: Record<number, ItemEntity> = {
 
     // Slow Auras
-    0: { name: "Wand of the Wind", image: "/items/slow/slowT1.png", tier: 1, tags: [Slow,Aura],restrictedTo: null, stats: {str: 9, agi: 9, int: 9}, passive: "Slows nearby enemies by 10%" },
-    1: { name: "Scepter of the Sea", image: "/items/slow/slowT2.png", tier: 2, tags: [Slow,Aura],restrictedTo: null, stats: {str: 18, agi: 18, int: 18}, passive: "Slows nearby enemies by 20%" },
-    2: { name: "Staff of Negation", image: "/items/slow/slowT3.webp", tier: 3, tags: [Slow,Aura],restrictedTo: null, stats: {str: 36, agi: 36, int: 36}, passive: "Slows nearby enemies by 30%" },
+    0: { name: "Wand of the Wind", image: "/items/slow/slowT1.png", tier: 1, tags: [Quick, Slow, Aura],restrictedTo: null, stats: {str: 9, agi: 9, int: 9}, passive: "Slows nearby enemies by 10%" },
+    1: { name: "Scepter of the Sea", image: "/items/slow/slowT2.png", tier: 2, tags: [Quick, Slow,Aura],restrictedTo: null, stats: {str: 18, agi: 18, int: 18}, passive: "Slows nearby enemies by 20%" },
+    2: { name: "Staff of Negation", image: "/items/slow/slowT3.webp", tier: 3, tags: [Quick, Slow,Aura],restrictedTo: null, stats: {str: 36, agi: 36, int: 36}, passive: "Slows nearby enemies by 30%" },
     3: { name: "Staff of Negation", image: "/items/slow/slowT3.webp", tier: 3, tags: [Slow,Aura,Active, Upgraded],restrictedTo: null, stats: {str: 36, agi: 36, int: 36}, passive: "Slows nearby enemies by 30%", active: "150 random stat" },
 
     // -Armor Effects
-    4: { name: "Orb of Darkness", image: "/items/-armor/orbT1.webp", tier: 1, tags: [ArmorReduction, Effect], restrictedTo: null, stats: { str:10, agi:10, int:5 }, passive: "Attacks reduce enemy armor by 2 for 5 seconds" },
-    5: { name: "Orb of Corruption", image: "/items/-armor/orbT2.webp", tier: 2, tags: [ArmorReduction, Effect],restrictedTo: null, stats: { str:20, agi:20, int:10 }, passive: "Attacks reduce enemy armor by 4 for 5 seconds" },
-    6: { name: "Wand of Shadowsight", image: "/items/-armor/armorAuraT2.png", tier: 2,tags: [ArmorReduction, Aura], restrictedTo: null, stats: { str:16, agi:16, int:16}, passive: "Reduces armor of nearby enemies by 4" },
-    7: { name: "Phoenix Egg", image: "/items/-armor/armorAuraT3.webp", tier: 3, tags: [ArmorReduction, Aura],restrictedTo: null, stats: { str:32, agi:32, int:32 }, passive: "Reduces armor of nearby enemies by 6" },
-    8: { name: "Phoenix Egg", image: "/items/-armor/armorAuraT3.webp", tier: 3, tags: [ArmorReduction, Aura, Active, Upgraded],restrictedTo: null, stats: { str:32, agi:32, int:32 }, passive: "Reduces armor of nearby enemies by 6", active: "150 random stat" },
+    4: { name: "Orb of Darkness", image: "/items/-armor/orbT1.webp", tier: 1, tags: [Quick, ArmorReduction, Effect], restrictedTo: null, stats: { str:10, agi:10, int:5 }, passive: "Attacks reduce enemy armor by 2 for 5 seconds" },
+    5: { name: "Orb of Corruption", image: "/items/-armor/orbT2.webp", tier: 2, tags: [Quick, ArmorReduction, Effect],restrictedTo: null, stats: { str:20, agi:20, int:10 }, passive: "Attacks reduce enemy armor by 4 for 5 seconds" },
+    6: { name: "Wand of Shadowsight", image: "/items/-armor/armorAuraT2.png", tier: 2,tags: [Quick, ArmorReduction, Aura], restrictedTo: null, stats: { str:16, agi:16, int:16}, passive: "Reduces armor of nearby enemies by 4" },
+    7: { name: "Phoenix Egg", image: "/items/-armor/armorAuraT3.webp", tier: 3, tags: [Quick, ArmorReduction, Aura],restrictedTo: null, stats: { str:32, agi:32, int:32 }, passive: "Reduces armor of nearby enemies by 6" },
+    8: { name: "Phoenix Egg", image: "/items/-armor/armorAuraT3.webp", tier: 3, tags: [Quick, ArmorReduction, Aura, Active, Upgraded],restrictedTo: null, stats: { str:32, agi:32, int:32 }, passive: "Reduces armor of nearby enemies by 6", active: "150 random stat" },
 
     // summon auras
-    9: { name: "Staff of Reanimation", image: "/items/summonAuras/summonAuraT2.png", tier: 2, tags: [Summon, Aura], restrictedTo: null,stats: { str:15, agi:15, int:15 }, passive: "Nearby summons/illusions gain +15% movement speed and 10% attack speed" },
-    10: { name: "Scroll of the Unholy Legion", image: "/items/summonAuras/scrollOfUnholyLegion.webp", tier: 3, tags: [Summon, Aura],restrictedTo: null, stats: { str:30, agi:30, int:30 }, passive: "Nearby summons/illusions gain +20% movement speed and 15% attack speed" },
+    9: { name: "Staff of Reanimation", image: "/items/summonAuras/summonAuraT2.png", tier: 2, tags: [Quick, Summon, Aura], restrictedTo: null,stats: { str:15, agi:15, int:15 }, passive: "Nearby summons/illusions gain +15% movement speed and 10% attack speed" },
+    10: { name: "Scroll of the Unholy Legion", image: "/items/summonAuras/scrollOfUnholyLegion.webp", tier: 3, tags: [Quick, Summon, Aura],restrictedTo: null, stats: { str:30, agi:30, int:30 }, passive: "Nearby summons/illusions gain +20% movement speed and 15% attack speed" },
     11: { name: "Scroll of the Unholy Legion", image: "/items/summonAuras/scrollOfUnholyLegion.webp", tier: 3, tags: [Summon, Aura,Active, Upgraded],restrictedTo: null, stats: { str:30, agi:30, int:30 }, passive: "Nearby summons/illusions gain +20% movement speed and 15% attack speed", active:"150 random stat" },
 
     // attack summon
@@ -61,18 +61,18 @@ export const itemData: Record<number, ItemEntity> = {
 
     // summon duration
     15: { name: "Diamond of Summoning", image: "/items/summonDuration/summonDurationT2.png",  tier: 2, tags: [Summon], restrictedTo: null, stats: { str:15, agi:15, int:15 }, passive: "Increases summon duration by 3 seconds" },
-    16: { name: "Skullshield", image: "/items/summonDuration/summonDurationT3.webp", tier: 3, tags: [Summon], restrictedTo: null, stats: { str:30, agi:30, int:30 }, passive: "Increases summon duration by 5 seconds" },
+    16: { name: "Skullshield", image: "/items/summonDuration/summonDurationT3.webp", tier: 3, tags: [Quick, Summon], restrictedTo: null, stats: { str:30, agi:30, int:30 }, passive: "Increases summon duration by 5 seconds" },
     17: { name: "Skullshield", image: "/items/summonDuration/summonDurationT3.webp", tier: 3, tags: [Summon,Active, Upgraded], restrictedTo: null, stats: { str:30, agi:30, int:30 }, passive: "Increases summon duration by 5 seconds", active: "Take control of a summon/illusion and reset its duration to 20s" },
 
     // reset
-    18: { name: "Shamanic Totem", image: "/items/reset/resetT2.webp", tier: 2, tags: [Spell,Reset], restrictedTo: null, stats: { str:0,agi:10, int:40 }, passive: "10% chance to reset cooldown on ability cast" },
-    19: { name: "Arcane Scroll", image: "/items/reset/resetT3.webp", tier: 3, tags: [Spell,Reset], restrictedTo: null, stats: { str:0,agi:20, int:80 }, passive: "20% chance to reset cooldown on ability cast (does not work on Jaina)." },
-    20: { name: "Arcane Scroll", image: "/items/reset/resetT3.webp", tier: 3, tags: [Spell,Reset, Active, Upgraded], restrictedTo: null, stats: { str:0,agi:20, int:80 }, passive: "20% chance to reset cooldown on ability cast (does not work on Jaina).", active: "Resets all cooldowns but reduces the cooldown reset effect by half for 30s" },
+    18: { name: "Shamanic Totem", image: "/items/reset/resetT2.webp", tier: 2, tags: [Spell, Reset], restrictedTo: null, stats: { str:0,agi:10, int:40 }, passive: "10% chance to reset cooldown on ability cast" },
+    19: { name: "Arcane Scroll", image: "/items/reset/resetT3.webp", tier: 3, tags: [Quick, Spell, Reset], restrictedTo: null, stats: { str:0,agi:20, int:80 }, passive: "20% chance to reset cooldown on ability cast (does not work on Jaina)." },
+    20: { name: "Arcane Scroll", image: "/items/reset/resetT3.webp", tier: 3, tags: [Quick, Spell,Reset, Active, Upgraded], restrictedTo: null, stats: { str:0,agi:20, int:80 }, passive: "20% chance to reset cooldown on ability cast (does not work on Jaina).", active: "Resets all cooldowns but reduces the cooldown reset effect by half for 30s" },
 
     // spelldmg
     21: { name: "Essence of Azune", image: "/items/spelldmg/spelldmgT2.webp", tier: 2, tags: [Spell], restrictedTo: null, stats: { str:14, agi:14, int:14 }, passive: "+20% spell damage" },
-    22: { name: "Staff of Sanctuary", image: "/items/spelldmg/spelldmgT3.webp", tier: 3, tags: [Spell], restrictedTo: null, stats: { str:28, agi: 28, int:28 }, passive: "+40% spell damage" },
-    23: { name: "Staff of Sanctuary", image: "/items/spelldmg/spelldmgT3.webp", tier: 3, tags: [Spell,Active, Upgraded], restrictedTo: null, stats: { str:28, agi:28, int:28 }, passive: "+40% spell damage", active: "Increases main stat by 15% for 6 seconds"},
+    22: { name: "Staff of Sanctuary", image: "/items/spelldmg/spelldmgT3.webp", tier: 3, tags: [Quick, Spell], restrictedTo: null, stats: { str:28, agi: 28, int:28 }, passive: "+40% spell damage" },
+    23: { name: "Staff of Sanctuary", image: "/items/spelldmg/spelldmgT3.webp", tier: 3, tags: [Quick, Spell, Active, Upgraded], restrictedTo: null, stats: { str:28, agi:28, int:28 }, passive: "+40% spell damage", active: "Increases main stat by 15% for 6 seconds"},
 
     // stun
     24: { name: "Wand of Lightning", image: "/items/stun/stunT2.webp", tier: 2, tags:[Effect], restrictedTo: null, stats: { str:24, agi:12, int:12 }, passive: "8% chance to stun for 1.5s." },
@@ -88,15 +88,15 @@ export const itemData: Record<number, ItemEntity> = {
     // general
     31: { name: "Gold Coins", image: "/items/goldCoin.webp", tier: 2, tags:[], restrictedTo: null, stats: { str: 16, agi: 16, int: 16 }, passive: "Killing a target has a 20% chance for a (Monster level * 2) gold bonus" },
     32: { name: "Mindstaff", image: "/items/mindStaff.webp", tier: 2, tags:[Spell, Aura, ManaRegen, Stack], restrictedTo: null, stats: { str:10, agi:10, int:30 }, passive: "Increases mana regeneration by 70% and grants mana regeneration to allied units within 480 range"},
-    33: { name: "Magic Sentry", image: "/items/invisDetection.webp", tier: 2, tags:[Aura, Active],restrictedTo: null, stats: { str:18, agi:18, int:18 }, passive: "Reveals invisible units in a 1200 radius",active: "Reveals an area of the map that is cast upon for 16s, Also reveals invisible Units" },
-    34: { name: "Shaman Claws", image: "/items/shamanClaws.png", tier: 3, tags:[Spell, ManaRegen, Stack],restrictedTo: null, stats: { str:24, agi:24, int:92 }, passive: "Increases int by 40 and mana regeneration by 50%",active: "Deals (Intelligence * 8) damage to a target and restores 5% mana of damage dealt" },
+    33: { name: "Magic Sentry", image: "/items/invisDetection.webp", tier: 2, tags:[Quick, Aura, Active],restrictedTo: null, stats: { str:18, agi:18, int:18 }, passive: "Reveals invisible units in a 1200 radius",active: "Reveals an area of the map that is cast upon for 16s, Also reveals invisible Units" },
+    34: { name: "Shaman Claws", image: "/items/shamanClaws.png", tier: 3, tags:[Quick, Spell, ManaRegen, Stack],restrictedTo: null, stats: { str:24, agi:24, int:92 }, passive: "Increases int by 40 and mana regeneration by 50%",active: "Deals (Intelligence * 8) damage to a target and restores 5% mana of damage dealt" },
     35: { name: "Shaman Claws", image: "/items/shamanClaws.png", tier: 3, tags:[Spell, ManaRegen, Active, Upgraded,Stack],restrictedTo: null, stats: { str:24, agi:24, int:92 }, passive: "Increases int by 40 and mana regeneration by 50%",active: "Deals (Intelligence * 8) damage to a target and restores 5% mana of damage dealt" },
     36: { name: "Bloodfeather Heart", image: "/items/bloodfeatherHeart.webp", tier: 3, restrictedTo: null, tags:[Summon], stats: { str: 25, agi:25, int:40 }, passive: "Increases perfect summon by 35%" },
     37: { name: "Bloodfeather Heart", image: "/items/bloodfeatherHeart.webp", tier: 3, restrictedTo: null, tags:[Summon,Active,Upgraded], stats: { str: 25, agi:25,int:40 }, passive: "Increases perfect summon by 35%", active: "All nearby summons gain a 6hp shield in 1200 range" },
-    38: { name: "Staff of Silence", image: "/items/staffOfSilence.webp", tier: 3, tags: [Crit],restrictedTo: null, stats: { str:20, agi:20 ,int:60 }, passive: "Increase crit chance by 25%" },
+    38: { name: "Staff of Silence", image: "/items/staffOfSilence.webp", tier: 3, tags: [Quick, Crit],restrictedTo: null, stats: { str:20, agi:20 ,int:60 }, passive: "Increase crit chance by 25%" },
     39: { name: "Staff of Silence", image: "/items/staffOfSilence.webp", tier: 3, tags: [Crit, Active, Upgraded],restrictedTo: null, stats: { str:20, agi:20 ,int:60 }, passive: "Increase crit chance by 25%", active: "Consumes 50% mana, increases Attack speed by 400%" },
     40: { name: "Searing Bow", image: "/items/fieryBow.webp", tier: 3, tags:[Summon], restrictedTo: null,  stats: { str:20, agi:60 ,int:20 }, passive: "Summoned minions have 80% evasion penetration and deal 115% damage per attack" },
-    41: { name: "Searing Bow", image: "/items/fieryBow.webp", tier: 3, tags:[Summon, Active,Upgraded, Aura], restrictedTo: null,  stats: { str:20, agi:60 ,int:20 }, passive: "Summoned minions have 80% evasion penetration and deal 115% damage per attack", active: "Increase attack speed of nearby summons/illusions by 75% for 5s in 1200 range" },
+    41: { name: "Searing Bow", image: "/items/fieryBow.webp", tier: 3, tags:[Summon, Active, Upgraded, Aura], restrictedTo: null,  stats: { str:20, agi:60 ,int:20 }, passive: "Summoned minions have 80% evasion penetration and deal 115% damage per attack", active: "Increase attack speed of nearby summons/illusions by 75% for 5s in 1200 range" },
     42: { name: "Storm Hammers", image: "/items/stormHammer.webp", tier: 3, tags:[Effect, Spell], restrictedTo: null, stats: { str:20 ,agi: 0, int: 80 }, passive: "Using a skill has a 26% chance to deal (Intelligence * 6) damage to surrounding targets" },
     43: { name: "Storm Hammers", image: "/items/stormHammer.webp", tier: 3, tags:[Effect, Spell, Active, Upgraded], restrictedTo: null, stats: { str:20 ,agi: 0, int: 80 }, passive: "Using a skill has a 26% chance to deal (Intelligence * 6) damage to surrounding targets", active: "Deals (Intelligence * 8) damage to surrounding targets in 2040 range" },
     44: { name: "Chitinous Blade", image: "/items/chitBlade.png", tier: 3, tags:[Crit], restrictedTo: null, stats: { str: 20, agi:60, int: 20 }, passive: " Crit damage increased by 30%" },
@@ -111,15 +111,15 @@ export const itemData: Record<number, ItemEntity> = {
     53: { name: "Spiked Collar", image: "/items/spikedCollar.png", tier: 3, tags:[Burn], restrictedTo: null, stats: { str: 80, agi:20, int: 0 }, passive: "Heroes attack summon 1 Fel stalker that deals (Agility * 7) damage on kill 25%" },
 
     // Potions
-    54: {name: "Potion of Myth", image: "/items/potions/rgbPot.webp", tier: 3, tags: [Potion, Summon], restrictedTo: null, stats: {str: 75, agi:75, int: 75}, passive:"Increase perfect summon chance by 35%"},
+    54: {name: "Potion of Myth", image: "/items/potions/rgbPot.webp", tier: 3, tags: [Quick, Potion, Summon], restrictedTo: null, stats: {str: 75, agi:75, int: 75}, passive:"Increase perfect summon chance by 35%"},
     55: {name: "Potion of Guile", image: "/items/potions/rrbPot.webp", tier: 3, tags: [Potion,Stun,Silence, Resistance],restrictedTo: null, stats: {str: 150, agi:0, int: 75}, passive: "Reduces stun/silent effects by 35% when worn"},
     56: {name: "Potion of Might", image: "/items/potions/rrgPot.webp", tier: 3,tags: [Potion, Effect], restrictedTo: null, stats: {str: 150, agi:75, int: 0}, passive: "Increase the attack damage of the Hero by 250 and increase the chance of ignoring target armor by 10% when worn"},
     57: {name: "Potion of Hush", image: "/items/potions/rrrPot.webp", tier: 3, tags: [Potion, Burn], restrictedTo: null, stats: {str: 225, agi:0, int: 0}, passive:"Engulfs the Hero in Fire which deals (Str * 2.8) damage per second to nearby enemy land units." },
     58: {name: "Potion of Bane", image: "/items/potions/ggrPot.webp", tier: 3, tags: [Potion, Crit],restrictedTo: null, stats: {str: 75, agi:150, int: 0}, passive: "Excellence damage increase by 45%"},
-    59: {name: "Potion of Terror", image: "/items/potions/ggbPot.webp", tier: 3, tags: [Potion, Crit],restrictedTo: null, stats: {str: 0, agi:150, int: 75}, passive: "Increase chance to deal excellent damage by 35%"},
+    59: {name: "Potion of Terror", image: "/items/potions/ggbPot.webp", tier: 3, tags: [Quick, Potion, Crit],restrictedTo: null, stats: {str: 0, agi:150, int: 75}, passive: "Increase chance to deal excellent damage by 35%"},
     60: {name: "Potion of Marvel", image: "/items/potions/gggPot.webp", tier: 3, tags: [Potion],restrictedTo: null, stats: {str: 0, agi:225, int: 0}, passive: "The Hero's attack have 15% chance of dealing explosion (Agi * 5) damage to nearby enemies"},
-    61: {name: "Potion of Virtue", image: "/items/potions/bbrPot.webp", tier: 3, tags: [Potion, Spell],restrictedTo: null, stats: {str: 75, agi:0, int: 150}, passive: "Increase Spelldmg by 40%"},
-    62: {name: "Potion of Faith", image: "/items/potions/bbgPot.webp", tier: 3, tags: [Potion, Reset],restrictedTo: null, stats: {str: 0, agi:75, int: 150}, passive: "Using a skill has a 25% chance to reset cooldown."},
+    61: {name: "Potion of Virtue", image: "/items/potions/bbrPot.webp", tier: 3, tags: [Quick, Potion, Spell],restrictedTo: null, stats: {str: 75, agi:0, int: 150}, passive: "Increase Spelldmg by 40%"},
+    62: {name: "Potion of Faith", image: "/items/potions/bbgPot.webp", tier: 3, tags: [Quick, Potion, Reset],restrictedTo: null, stats: {str: 0, agi:75, int: 150}, passive: "Using a skill has a 25% chance to reset cooldown."},
     63: {name: "Potion of Psyche", image: "/items/potions/bbbPot.webp", tier: 3, tags: [Potion],restrictedTo: null, stats: {str: 0, agi:0, int: 225}, passive: "The Hero's attack have 15% chance of dealing explosion (Int * 5) damage to nearby enemies" },
 
 

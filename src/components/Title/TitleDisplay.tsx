@@ -1,5 +1,6 @@
 import { useTowerStore } from "../../state/towerStore.ts";
 import React, { useState } from "react";
+import { ShareButton } from "../Buttons/ShareButton.tsx";
 
 export const TitleDisplay: React.FC = () => {
     const title = useTowerStore(state => state.title);
@@ -27,22 +28,33 @@ export const TitleDisplay: React.FC = () => {
     };
 
     return (
-        <div className="mb-4 bg-gray-100 border rounded shadow">
-            {isEditing ? (
-                <input
-                    type="text"
-                    value={tempTitle}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    onKeyDown={handleKeyDown}
-                    autoFocus
-                    className="border rounded px-2 py-1 text-sm w-full"
-                />
-            ) : (
-                <h3 onClick={handleClick} className="text-xl font-semibold cursor-pointer">
-                    {title || "Enter build Name"}
-                </h3>
-            )}
+        <div className="mb-5 bg-gray-100 border rounded shadow flex items-center p-1 w-full max-w-2xl">
+            {/* Title section - 2/3 width or max 2xl */}
+            <div className="flex-grow max-w-1xl">
+                {isEditing ? (
+                    <input
+                        type="text"
+                        value={tempTitle}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        onKeyDown={handleKeyDown}
+                        autoFocus
+                        className="w-full text-center border rounded px-3 py-2 text-xl font-semibold bg-white"
+                    />
+                ) : (
+                    <h2
+                        onClick={handleClick}
+                        className="text-xl font-semibold text-center cursor-pointer text-gray-800 w-full"
+                    >
+                        {title || <span className="text-gray-400">Enter build name</span>}
+                    </h2>
+                )}
+            </div>
+
+            {/* Share button - right aligned */}
+
+                <ShareButton />
+
         </div>
     );
 };

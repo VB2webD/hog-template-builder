@@ -7,5 +7,5 @@ export interface gridConfig {
 export const gridConfig: gridConfig = {
     row: 13,
     col: 15,
-    cellSize: 40
+    cellSize: 65
 }

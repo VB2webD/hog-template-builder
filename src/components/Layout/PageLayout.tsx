@@ -5,28 +5,33 @@ import {Grid} from "../Grid/Grid.tsx";
 import {InventoryDisplay} from "../Inventory/InventoryDisplay.tsx";
 import {TitleDisplay} from "../Title/TitleDisplay.tsx";
 import {PinnedDisplay} from "../PinnedHeroes/PinnedDisplay.tsx";
-import {ShareButton} from "../Buttons/ShareButton.tsx";
+import {Toaster} from "react-hot-toast";
 
 export const PageLayout: React.FC = () => {
     return (
-        <div className="min-h-screen min-w-screen bg-blue-100 relative p-10">
-            <div className="flex gap-4 bg-yellow-100 items-center">
+        <div className="w-full h-full flex flex-col p-2">
+            {/* Header */}
+            <Toaster position="bottom-center" />
+
+            {/* 3-Column Grid */}
+            <div className="grid grid-cols-[3fr_5fr_3fr] gap-2">
                 {/* Left Sidebar */}
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-7">
                     <TitleDisplay/>
+
                     <InventoryDisplay/>
+
                     <TowerDisplay/>
                 </div>
 
-                {/* Main content */}
-                <div className="flex flex-col  items-center bg-red-50 gap-4">
+                {/* Center Column */}
+                <div className="flex flex-col items-center gap-2">
                     <ItemDisplay/>
                     <Grid isMurloc={false}/>
                 </div>
 
-                {/* Info Panel, wip*/}
-                <div className="flex flex-col flex-grow items-center bg-purple-50 gap-4">
-                    <ShareButton />
+                {/* Right Sidebar */}
+                <div className="flex flex-col place-content-center gap-4 p-2">
                     <PinnedDisplay/>
                 </div>
             </div>

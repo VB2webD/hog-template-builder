@@ -24,7 +24,6 @@ export const InventoryCard: React.FC<InventoryCardProps> = ({
 
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         onDrop(index, e);
-        console.log("[InventoryCard] Dropped item at slot", index);
     };
 
     const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -42,7 +41,7 @@ export const InventoryCard: React.FC<InventoryCardProps> = ({
             backgroundRepeat: "no-repeat",
         },
         className: `
-            w-16 h-16 border border-gray-300 bg-white flex items-center justify-center
+            w-16 h-16 border border-gray-300 bg-white flex items-center justify-center select-none
             ${item ? getItemShadowClass(item.tags) : ""}
         `,
     };
