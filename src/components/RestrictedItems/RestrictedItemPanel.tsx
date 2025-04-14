@@ -20,7 +20,7 @@ export const RestrictedItemPanel: React.FC<PanelProps> = ({ name, tier }) => {
     if (!items.length) return null;
 
     return (
-        <div className="grid grid-cols-1 gap-2 p-2 bg-gray border border-gray-300">
+        <div className="grid grid-cols-1 gap-5 p-2 bg-gray">
             {items.map(item => (
                 <RestrictedItemCard key={item.id} itemId={item.id} />
             ))}

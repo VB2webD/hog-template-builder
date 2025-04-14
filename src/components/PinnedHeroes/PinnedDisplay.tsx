@@ -8,10 +8,10 @@ export const PinnedDisplay: React.FC = () => {
 
     return (
         <div className="flex flex-wrap justifiy-center gap-10 items-start">
-            {Array.from({ length: 4 }, (_, index) => {
+            {Array.from({ length: 6 }, (_, index) => {
                 const towerId = pinnedTowers[index];
                 const placedTower = towerId ? towers[towerId] : null;
-
+                
                 return placedTower ? (
                     <Inventory key={towerId} towerId={towerId} placedTower={placedTower} />
                 ) : null;
