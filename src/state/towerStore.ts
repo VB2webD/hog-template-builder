@@ -1,5 +1,5 @@
 import {create} from 'zustand';
-import {flatTowers} from '../features/Towers/towerData.ts';
+import {towerData} from '../features/Towers/towerData.ts';
 
 export interface PlacedTower {
     id: number; // reference to flatTowers
@@ -54,11 +54,11 @@ export const useTowerStore = create<TowerStore>((set, get) => ({
         set((state) => {
             const updated = {...state.towers};
             if (tower) {
-                const def = flatTowers[tower.id];
+                const def = towerData[tower.id];
                 const slotCount = def?.slots ?? 0;
                 updated[gridPosition] = {
                     id: tower.id,
-                    itemsIds: Array(slotCount).fill(null),
+                    itemsIds: tower.itemsIds ?? Array(slotCount).fill(null),
                 };
                 console.log("[ZUSTAND] setTower updated:", gridPosition, updated[gridPosition]);
             } else {
@@ -87,14 +87,14 @@ export const useTowerStore = create<TowerStore>((set, get) => ({
         }),
 
     hoveredItemId: null,
-    setHoveredItemId: (id) => set({ hoveredItemId: id }),
+    setHoveredItemId: (id) => set({hoveredItemId: id}),
 
     updateItemSlot: (towerId, itemId, toIndex, fromIndex) =>
         set((state) => {
             const tower = state.towers[towerId];
             if (!tower) return state;
 
-            const definition = flatTowers[tower.id];
+            const definition = towerData[tower.id];
             if (!definition) return state;
 
             const updatedItemsIds = Array.from(

@@ -1,7 +1,7 @@
 import React from "react";
 import { InventoryCard } from "./InventoryCard";
 import { useTowerStore } from "../../state/towerStore";
-import { flatTowers } from "../../features/Towers/towerData";
+import { towerData } from "../../features/Towers/towerData";
 import { handleItemDrop } from "../../features/Items/itemHelper";
 import { PinButton } from "../Buttons/PinButton.tsx";
 import { PlacedTower } from "../../state/towerStore";
@@ -14,7 +14,7 @@ interface InventoryProps {
 export const Inventory: React.FC<InventoryProps> = ({ towerId, placedTower }) => {
     const updateItemSlot = useTowerStore(state => state.updateItemSlot);
 
-    const definition = placedTower ? flatTowers[placedTower.id] : null;
+    const definition = placedTower ? towerData[placedTower.id] : null;
     const slots = definition?.slots ?? 0;
     const items = placedTower?.itemsIds ?? [];
 

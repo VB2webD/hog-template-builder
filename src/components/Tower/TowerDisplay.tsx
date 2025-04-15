@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {flatTowers, Race, Tower} from "../../features/Towers/towerData";
+import {towerData, Race, Tower} from "../../features/Towers/towerData";
 import {TowerCard} from "./TowerCard";
 
 export const TowerDisplay: React.FC = () => {
@@ -12,10 +12,10 @@ export const TowerDisplay: React.FC = () => {
     };
 
     // Convert Record<number, Tower> to Array<{ id: number; tower: Tower }>
-    const towersArray = Object.entries(flatTowers)
+    const towersArray = Object.entries(towerData)
         .map(([id, tower]) => ({id: Number(id), ...tower}))
         .filter(tower => tower.race === activeRace);
-    console.log(towersArray)
+
     // Group towers by tier
     const groupedByTier = towersArray.reduce<Record<1 | 2 | 3, Array<{ id: number } & Tower>>>(
         (acc, tower) => {

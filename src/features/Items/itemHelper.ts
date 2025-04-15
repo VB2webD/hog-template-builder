@@ -1,7 +1,7 @@
 import React from "react";
 import {ItemTags} from "../../entities/itemEntity";
 import {useTowerStore} from "../../state/towerStore.ts";
-import {flatTowers} from "../Towers/towerData.ts";
+import {towerData} from "../Towers/towerData.ts";
 import {itemData} from "./itemData.ts";
 import toast from "react-hot-toast";
 
@@ -73,7 +73,7 @@ export function addItemOnFirstEmptySlot(towerId: string | null, item: number) {
     const tower = store.towers[towerId];
     if (!tower) return;
 
-    const def = flatTowers[tower.id];
+    const def = towerData[tower.id];
     if (!def) return;
 
     const items = tower.itemsIds ?? [];

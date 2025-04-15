@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { useValidCells } from "../../features/Grid/useValidCells.ts";
-import { gridConfig } from "../../features/Grid/gridConfig.ts";
-import { useTowerStore } from "../../state/towerStore.ts";
-import { GridCell } from './GridCell.tsx';
+import React, {useState} from 'react';
+import {useValidCells} from "../../features/Grid/useValidCells.ts";
+import {gridConfig} from "../../features/Grid/gridConfig.ts";
+import {useTowerStore} from "../../state/towerStore.ts";
+import {GridCell} from './GridCell.tsx';
 
-export const Grid: React.FC<{ isMurloc: boolean }> = ({ isMurloc }) => {
+export const Grid: React.FC<{ isMurloc: boolean }> = ({isMurloc}) => {
     const validCells = useValidCells(isMurloc);
     const selectedTowerId = useTowerStore(state => state.selectedTowerId);
     const setSelectedTowerId = useTowerStore(state => state.setSelectedTowerId);
@@ -13,7 +13,7 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({ isMurloc }) => {
 
 
     const [hoveredCell, setHoveredCell] = useState<{ row: number; col: number } | null>(null);
-    const { row: rows, col: cols, cellSize } = gridConfig;
+    const {row: rows, col: cols, cellSize} = gridConfig;
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
@@ -21,7 +21,7 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({ isMurloc }) => {
         const y = Math.floor((e.clientY - rect.top) / cellSize);
 
         if (x >= 0 && x < cols && y >= 0 && y < rows) {
-            setHoveredCell({ row: y, col: x });
+            setHoveredCell({row: y, col: x});
         } else {
             setHoveredCell(null);
         }
@@ -54,7 +54,7 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({ isMurloc }) => {
         const isValid = validCells.some(cell => cell.row === y && cell.col === x);
         if (!isValid) return;
 
-        setTower(key, { id: towerId, itemsIds: [] });
+        setTower(key, towers[fromCell]);
 
         if (fromCell && fromCell !== key) {
             setTower(fromCell, null);
@@ -74,7 +74,7 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({ isMurloc }) => {
         <div
             className="relative select-none"
             onMouseMove={handleMouseMove}
-            onContextMenu = {handleRightClick}
+            onContextMenu={handleRightClick}
             onMouseLeave={handleMouseLeave}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
@@ -83,8 +83,8 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({ isMurloc }) => {
                 height: rows * cellSize,
             }}
         >
-            {Array.from({ length: rows }).map((_, y) =>
-                Array.from({ length: cols }).map((_, x) => {
+            {Array.from({length: rows}).map((_, y) =>
+                Array.from({length: cols}).map((_, x) => {
                     const cellKey = getCellKey(y, x);
                     const tower = towers[cellKey];
                     const isSelected = selectedTowerId === cellKey;

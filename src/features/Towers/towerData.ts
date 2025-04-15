@@ -17,7 +17,7 @@ export interface Tower {
 
 // flattened array for state perisistance, I use this to reduce the volume of the saved states for url hashing
 
-export const flatTowers:  Record<number, Tower> = {
+export const towerData:  Record<number, Tower> = {
     //Human
     0: {name: "Windrunner", tier: 1, image: "/towers/human/windRunner.webp", slots: 4, race: Race.Human},
     1: {name: "Flying Machine", tier: 1, image: "/towers/human/fm.webp", slots: 4, race: Race.Human},

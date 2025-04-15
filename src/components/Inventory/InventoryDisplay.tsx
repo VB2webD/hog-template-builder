@@ -2,7 +2,7 @@ import React from "react";
 import { useTowerStore } from "../../state/towerStore";
 import { RestrictedItemPanel } from "../RestrictedItems/RestrictedItemPanel.tsx";
 import { Inventory } from "./Inventory";
-import { flatTowers } from "../../features/Towers/towerData.ts";
+import { towerData } from "../../features/Towers/towerData.ts";
 import {ItemDetailCard} from "../Item/ItemDetailCard.tsx";
 
 export const InventoryDisplay: React.FC = () => {
@@ -12,7 +12,7 @@ export const InventoryDisplay: React.FC = () => {
         selectedTowerId ? state.towers[selectedTowerId] : null
     );
 
-    const tower = placedTower ? flatTowers[placedTower.id] : null;
+    const tower = placedTower ? towerData[placedTower.id] : null;
 
     return (
         <div className="flex gap-4 items-start">

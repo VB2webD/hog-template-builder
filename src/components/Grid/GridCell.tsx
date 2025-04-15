@@ -1,6 +1,6 @@
 import React from 'react';
 import { CellType } from '../../features/Grid/validCells';
-import { flatTowers } from '../../features/Towers/towerData.ts';
+import { towerData } from '../../features/Towers/towerData.ts';
 import { PlacedTower } from '../../state/towerStore.ts';
 
 interface GridItemProps {
@@ -38,8 +38,8 @@ export const GridCell: React.FC<GridItemProps> = ({
     const isHovered = hoveredCell?.row === row && hoveredCell?.col === col;
     const cell = validCells.find(c => c.row === row && c.col === col);
 
-    const flatTower = tower ? flatTowers[tower.id] : null;
-    const backgroundImage = getBackgroundImage(flatTower?.image, cell?.type);
+    const placedTower = tower ? towerData[tower.id] : null;
+    const backgroundImage = getBackgroundImage(placedTower?.image, cell?.type);
 
     return (
         <div
