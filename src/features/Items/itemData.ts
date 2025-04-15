@@ -133,68 +133,67 @@ export const itemData: Record<number, ItemEntity> = {
 
     // Kael
     68: { name: "Gloves of Spell Mastery", image: "/items/uniques/human/kaelUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne, ArmorReduction], restrictedTo: ItemRestriction.Kael, stats: {str: 50, agi: 50, int: 100}, passive: "Increases passive Skill +1" },
-    69: { name: "Gloves of Spell Mastery", image: "/items/uniques/human/kaelUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Kael, stats: {str: 0, agi: 0, int: 0}, passive:""},
+    69: { name: "Gloves of Spell Mastery", image: "/items/uniques/human/kaelUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Kael, stats: {str: 50, agi: 50, int: 100}, passive:"Phoenix burns nearby targets, dealing (Intelligence * 3 + 100) damage per second."},
 
     // Uther
     70: { name: "Drek'thar's Spellbook", image: "/items/uniques/human/utherUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Uther, stats: {str: 100, agi: 50, int: 50}, passive: "Increases passive Skill +1" },
-    71: { name: "Drek'thar's Spellbook", image: "/items/uniques/human/utherUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Uther, stats: {str: 0, agi: 0, int: 0}, passive:"" },
+    71: { name: "Drek'thar's Spellbook", image: "/items/uniques/human/utherUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Uther, stats: {str: 100, agi: 50, int: 50}, passive:"Activating Divine Shield increases stun resistance for nearby allies by 25% for 5s (can be stacked with synergy)." },
 
     // Mountain King
     72: { name: "Bladebane Armor", image: "/items/uniques/human/mkUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Mk, stats: {str: 100, agi: 50, int: 50}, passive: "Increases passive Skill +1" },
-    73: { name: "Bladebane Armor", image: "/items/uniques/human/mkUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Mk, stats: {str: 0, agi: 0, int: 0}, passive:"" },
+    73: { name: "Bladebane Armor", image: "/items/uniques/human/mkUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Mk, stats: {str: 100, agi: 50, int: 50}, passive:"In the Avatar state, all attacks cannot miss." },
 
     // Admiral Proudmoore
     74: { name: "Orb of Annihilation", image: "/items/uniques/human/apUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Ap, stats: {str: 50, agi: 100, int: 50}, passive: "Increases passive Skill +1" },
-    75: { name: "Orb of Annihilation", image: "/items/uniques/human/apUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Ap, stats: {str: 0, agi: 0, int: 0}, passive:"" },
+    75: { name: "Orb of Annihilation", image: "/items/uniques/human/apUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Ap, stats: {str: 50, agi: 100, int: 50}, passive:"Monsters summoned from items receive benefits from summoning effects." },
 
     // Grom
     76: { name: "Hood of Cunning", image: "/items/uniques/orc/gromUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Grom, stats: {str: 50, agi: 100, int: 50}, passive: "Increases passive Skill +1" },
-    77: { name: "Hood of Cunning", image: "/items/uniques/orc/gromUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Grom, stats: {str: 0, agi: 0, int: 0}, passive:"" },
+    77: { name: "Hood of Cunning", image: "/items/uniques/orc/gromUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Grom, stats: {str: 50, agi: 100, int: 50}, passive:"25 Agility stack gives 9.0% excellent damage." },
 
     // Gul'dan
     78: { name: "Skull of Gul'dan", image: "/items/uniques/orc/gulUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Gul, stats: {str: 100, agi: 50, int: 50}, passive: "Increases passive Skill +1" },
-    79: { name: "Skull of Gul'dan", image: "/items/uniques/orc/gulUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Gul, stats: {str: 0, agi: 0, int: 0}, passive:"" },
+    79: { name: "Skull of Gul'dan", image: "/items/uniques/orc/gulUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Gul, stats: {str: 100, agi: 50, int: 50}, passive:"Activate synergy [Gul'dan - Orc Warlock], damage increases target's HP by a percentage (minimum increase of 25%)" },
 
     // Thrall
     80: { name: "Thunderbloom Bulb", image: "/items/uniques/orc/thrallUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Thrall, stats: {str: 50, agi: 50, int: 100}, passive: "Increases passive Skill +1" },
-    81: { name: "Thunderbloom Bulb", image: "/items/uniques/orc/thrallUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Thrall, stats: {str: 0, agi: 0, int: 0}, passive: "" },
+    81: { name: "Thunderbloom Bulb", image: "/items/uniques/orc/thrallUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Thrall, stats: {str: 50, agi: 50, int: 100}, passive: "Increases the damage range of Forked Lightning skill." },
 
     // Maiev
     82: { name: "Cloak of Shadows", image: "/items/uniques/elv/maievUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Maiev, stats: {str: 50, agi: 100, int: 50}, passive: "Increases passive Skill +1" },
-    83: { name: "Cloak of Shadows", image: "/items/uniques/elv/maievUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Maiev, stats: {str: 0, agi: 0, int: 0}, passive: "" },
+    83: { name: "Cloak of Shadows", image: "/items/uniques/elv/maievUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Maiev, stats: {str: 50, agi: 100, int: 50}, passive: "The attack has a 15% chance of spawning a blood ritual that deals total damage (Agility * 6 + 200) over 2 times. The second or later Maiev increases dance damage by 25%." },
 
     // Demon Hunter
     84: { name: "Heart of Serianox", image: "/items/uniques/elv/dhUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Dh, stats: {str: 50, agi: 100, int: 50}, passive: "Increases passive Skill +1" },
-    85: { name: "Heart of Serianox", image: "/items/uniques/elv/dhUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne],restrictedTo: ItemRestriction.Dh, stats: {str: 0, agi: 0, int: 0},  passive: "" },
+    85: { name: "Heart of Serianox", image: "/items/uniques/elv/dhUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne],restrictedTo: ItemRestriction.Dh, stats: {str: 50, agi: 100, int: 50},  passive: "Has a 25% chance of permanently removing the target's evasion ability." },
 
     // Priestess of the Moon
     86: { name: "Horn of Cenarius", image: "/items/uniques/elv/potmUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Potm, stats: {str: 50, agi: 100, int: 50}, passive: "Increases passive Skill +1" },
-    87: { name: "Horn of Cenarius", image: "/items/uniques/elv/potmUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Potm, stats: {str: 0, agi: 0, int: 0},  passive: "" },
+    87: { name: "Horn of Cenarius", image: "/items/uniques/elv/potmUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Potm, stats: {str: 50, agi: 100, int: 50},  passive: "There is no limit to the number of Owls summoned per tower." },
 
     // Ancient of Lore
     88: { name: "xx", image: "/items/uniques/elv/aolUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Aol, stats: {str: 50, agi: 50, int: 100}, passive: "Increases passive Skill +1" },
-    89: { name: "xx", image: "/items/uniques/elv/aolUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne],restrictedTo: ItemRestriction.Aol, stats: {str: 0, agi: 0, int: 0},  passive: "" },
+    89: { name: "xx", image: "/items/uniques/elv/aolUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne],restrictedTo: ItemRestriction.Aol, stats: {str: 50, agi: 50, int: 100},  passive: "Reduced Fountain mana cost to 0.5%." },
 
     // Lich
     90: { name: "Book of the Dead", image: "/items/uniques/undead/lichUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Lich, stats: {str: 50, agi: 50, int: 100}, passive: "Increases passive Skill +1" },
-    91: { name: "Book of the Dead", image: "/items/uniques/undead/lichUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Lich, stats: {str: 0, agi: 0, int: 0}, passive: "" },
+    91: { name: "Book of the Dead", image: "/items/uniques/undead/lichUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Lich, stats: {str: 50, agi: 50, int: 100}, passive: "Coils of death are spawned right at the target location." },
 
     // Crypt Lord
     92: { name: "Spiked Shell", image: "/items/uniques/undead/clUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Cl, stats: {str: 50, agi: 100, int: 50}, passive: "Increases passive Skill +1" },
-    93: { name: "Spiked Shell", image: "/items/uniques/undead/clUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Cl, stats: {str: 0, agi: 0, int: 0}, passive: "" },
+    93: { name: "Spiked Shell", image: "/items/uniques/undead/clUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Cl, stats: {str: 50, agi: 100, int: 50}, passive: "" },
 
     // Death Knight
     94: { name: "Legion Doom-Horn", image: "/items/uniques/undead/dkUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Dk, stats: {str: 100, agi: 50, int: 50}, passive: "Increases passive Skill +1" },
-    95: { name: "Legion Doom-Horn", image: "/items/uniques/undead/dkUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Dk, stats: {str: 0, agi: 0, int: 0}, passive: "" },
-
+    95: { name: "Legion Doom-Horn", image: "/items/uniques/undead/dkUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Dk, stats: {str: 100, agi: 50, int: 50}, passive: "Frost Wyrm has a 8% chance to trigger Frostmourne." },
 
     // Archimonde
     96: { name: "Mana Stone", image: "/items/uniques/undead/archiUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Archi, stats: {str: 50, agi: 50, int: 100}, passive: "Increases passive Skill +1" },
-    97: { name: "Mana Stone", image: "/items/uniques/undead/archiUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Archi, stats: { str: 0, agi: 0, int: 0 }, passive: "" },
+    97: { name: "Mana Stone", image: "/items/uniques/undead/archiUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Archi, stats: {str: 50, agi: 50, int: 100}, passive: "Activating Replenish Mana will restore 7.5% of the mana of allied towers." },
 
     // Kil'jaeden
     98: { name: "Mark of Death", image: "/items/uniques/undead/kjUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Kj, stats: {str: 100, agi: 50, int: 50}, passive: "Increases passive Skill +1" },
-    99: { name: "Mark of Death", image: "/items/uniques/undead/kjUnique.webp", tier: 3, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Kj, stats: { str: 0, agi: 0, int: 0 }, passive: "" },
+    99: { name: "Mark of Death", image: "/items/uniques/undead/kjUnique.webp", tier: 3, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Kj, stats: {str: 100, agi: 50, int: 50}, passive: "When using the Finger of Death skill to kill a target, the skill will reactivate on a nearby target." },
 
     // Neutral heroes
     100: { name: "Staff of Preservation", image: "/items/uniques/neutral/mediUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Medi, stats: {str: 50, agi: 50, int: 100}, passive: "Increases passive Skill +1" },
@@ -203,5 +202,5 @@ export const itemData: Record<number, ItemEntity> = {
     103: { name: "Mark of the Wild", image: "/items/uniques/neutral/illiUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Illi, stats: { str: 0, agi: 0, int: 0 }, passive: "Increases passive Skill +1" },
     104: { name: "Ancestral Staff", image: "/items/uniques/neutral/pandaUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Panda, stats: { str: 0, agi: 0, int: 0 }, passive: "Increases passive Skill +1" },
     105: { name: "Sacrificial Skull", image: "/items/uniques/neutral/pitUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Pit, stats: { str: 0, agi: 0, int: 0 }, passive: "Increases passive Skill +1" },
-    106: { name: "xx", image: "/items/uniques/neutral/doUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Do, stats: {str: 50, agi: 100, int: 50}, passive: "Increases passive Skill +1"}
+    106: { name: "Claw of Strength", image: "/items/uniques/neutral/doUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Do, stats: {str: 50, agi: 100, int: 50}, passive: "Increases passive Skill +1"}
     };
