@@ -33,8 +33,10 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({isMurloc}) => {
 
     const handleRightClick = (e: React.MouseEvent) => {
         e.preventDefault();
-        if (!selectedTowerId) return;
-        setTower(selectedTowerId, null);
+        if (!hoveredCell) return;
+        const {row,col} = hoveredCell
+        console.log(row,col)
+        setTower(`${row}-${col}`, null);
     }
 
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
@@ -74,8 +76,8 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({isMurloc}) => {
         <div
             className="relative select-none"
             onMouseMove={handleMouseMove}
-            onContextMenu={handleRightClick}
             onMouseLeave={handleMouseLeave}
+            onContextMenu={handleRightClick}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             style={{
