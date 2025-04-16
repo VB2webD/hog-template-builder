@@ -37,6 +37,7 @@ type TowerStore = {
     };
 
     loadPersistedState: (persisted: Partial<Pick<TowerStore, "title" | "towers" | "pinnedTowers" | "selectedTowerId">>) => void;
+    resetStore: () => void;
 };
 
 export const useTowerStore = create<TowerStore>((set, get) => ({
@@ -131,5 +132,19 @@ export const useTowerStore = create<TowerStore>((set, get) => ({
             pinnedTowers: persisted.pinnedTowers ?? [],
             selectedTowerId: persisted.selectedTowerId ?? null,
         });
+    },
+
+    resetStore:() => {
+        set({
+            title: '',
+            towers: {},
+            pinnedTowers: [],
+            selectedTowerId: null,
+        });
+        // clear URL
+        const url = new URL(window.location.href);
+        url.searchParams.delete("state");
+        window.history.replaceState({}, document.title, url.pathname);
+
     }
 }));

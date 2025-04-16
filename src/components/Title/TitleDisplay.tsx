@@ -1,6 +1,7 @@
-import { useTowerStore } from "../../state/towerStore.ts";
-import React, { useState } from "react";
-import { ShareButton } from "../Buttons/ShareButton.tsx";
+import {useTowerStore} from "../../state/towerStore.ts";
+import React, {useState} from "react";
+import {ShareButton} from "../Buttons/ShareButton.tsx";
+import {ClearAllButton} from "../Buttons/ClearAllButton.tsx";
 
 export const TitleDisplay: React.FC = () => {
     const title = useTowerStore(state => state.title);
@@ -50,11 +51,8 @@ export const TitleDisplay: React.FC = () => {
                     </h2>
                 )}
             </div>
-
-            {/* Share button - right aligned */}
-
-                <ShareButton />
-
+            <ShareButton/>
+            <ClearAllButton/>
         </div>
     );
 };

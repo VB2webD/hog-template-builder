@@ -34,8 +34,8 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({isMurloc}) => {
     const handleRightClick = (e: React.MouseEvent) => {
         e.preventDefault();
         if (!hoveredCell) return;
-        const {row,col} = hoveredCell
-        console.log(row,col)
+        const {row, col} = hoveredCell
+
         setTower(`${row}-${col}`, null);
     }
 
@@ -56,7 +56,9 @@ export const Grid: React.FC<{ isMurloc: boolean }> = ({isMurloc}) => {
         const isValid = validCells.some(cell => cell.row === y && cell.col === x);
         if (!isValid) return;
 
-        setTower(key, towers[fromCell]);
+        const existingTowerItems = towers[fromCell]?.itemsIds;
+
+        setTower(key, {id: towerId, itemsIds: existingTowerItems});
 
         if (fromCell && fromCell !== key) {
             setTower(fromCell, null);

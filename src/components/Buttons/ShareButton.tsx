@@ -1,5 +1,6 @@
 import {useSearchParams} from "react-router-dom";
 import toast from "react-hot-toast";
+import {Clipboard} from "lucide-react";
 
 export const ShareButton: React.FC = () => {
     const [searchParams] = useSearchParams();
@@ -19,9 +20,8 @@ export const ShareButton: React.FC = () => {
 
     return (
         <button
-            onClick={handleCopy}
-            className="text-black rounded hover:bg-blue-600 active:scale-95 transition duration-350 ease-in-out"
-        ><img className="h-10 w-10" src="/copyToClipboard.png" alt="copy url to clipboard button image"/>
+            onClick={handleCopy}>
+            <Clipboard className="text-black-500 rounded block active:scale-95 transition duration-350 ease-in-out"/>
         </button>
     );
 };

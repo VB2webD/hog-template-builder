@@ -7,10 +7,11 @@ import {TitleDisplay} from "../Title/TitleDisplay.tsx";
 import {PinnedDisplay} from "../PinnedHeroes/PinnedDisplay.tsx";
 import {Toaster} from "react-hot-toast";
 
+
 export const PageLayout: React.FC = () => {
     return (
         <div className="w-full h-full flex flex-col p-2">
-            {/* Header */}
+
             <Toaster position="bottom-center" />
 
             {/* 3-Column Grid */}

@@ -2,7 +2,6 @@
 import LZString from "lz-string";
 import { PlacedTower } from "../state/towerStore";
 
-// Define only the fields that need to be persisted
 export type SerializedTowerState = {
     title: string;
     towers: Record<string, PlacedTower>;
