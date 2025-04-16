@@ -21,6 +21,9 @@ type TowerStore = {
     hoveredItemId: number | null;
     setHoveredItemId: (id: number | null) => void;
 
+    equippedGear: number[]; // [armorId, weaponId, ...]
+    setEquippedGear: (slotIndex: number, itemId: number) => void;
+
     updateItemSlot: (
         towerId: string,
         itemId: number | null,
@@ -34,9 +37,10 @@ type TowerStore = {
         towers: Record<string, PlacedTower>;
         pinnedTowers: string[];
         selectedTowerId: string | null;
+        equippedGear: number[]
     };
+    loadPersistedState: (persisted: Partial<Pick<TowerStore, "title" | "towers" | "pinnedTowers" | "selectedTowerId" | "equippedGear">>) => void;
 
-    loadPersistedState: (persisted: Partial<Pick<TowerStore, "title" | "towers" | "pinnedTowers" | "selectedTowerId">>) => void;
     resetStore: () => void;
 };
 
@@ -50,6 +54,7 @@ export const useTowerStore = create<TowerStore>((set, get) => ({
     towers: {},
     selectedTowerId: null,
     pinnedTowers: [],
+    equippedGear: [],
 
     setTower: (gridPosition, tower) => {
         set((state) => {
@@ -120,9 +125,17 @@ export const useTowerStore = create<TowerStore>((set, get) => ({
             };
         }),
 
+    setEquippedGear: (slotIndex, itemId) =>
+        set((state) => {
+            const updated = [...state.equippedGear];
+            updated[slotIndex] = itemId;
+            return { equippedGear: updated };
+        }),
+
+
     getPersistedState: () => {
-        const {title, towers, pinnedTowers, selectedTowerId} = get();
-        return {title, towers, pinnedTowers, selectedTowerId};
+        const {title, towers, pinnedTowers, selectedTowerId, equippedGear} = get();
+        return {title, towers, pinnedTowers, selectedTowerId, equippedGear};
     },
 
     loadPersistedState: (persisted: Partial<TowerStore>) => {
@@ -131,6 +144,7 @@ export const useTowerStore = create<TowerStore>((set, get) => ({
             towers: persisted.towers ?? {},
             pinnedTowers: persisted.pinnedTowers ?? [],
             selectedTowerId: persisted.selectedTowerId ?? null,
+            equippedGear: persisted.equippedGear ?? []
         });
     },
 
@@ -140,6 +154,7 @@ export const useTowerStore = create<TowerStore>((set, get) => ({
             towers: {},
             pinnedTowers: [],
             selectedTowerId: null,
+            equippedGear: []
         });
         // clear URL
         const url = new URL(window.location.href);

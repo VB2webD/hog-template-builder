@@ -6,6 +6,7 @@ import {InventoryDisplay} from "../Inventory/InventoryDisplay.tsx";
 import {TitleDisplay} from "../Title/TitleDisplay.tsx";
 import {PinnedDisplay} from "../PinnedHeroes/PinnedDisplay.tsx";
 import {Toaster} from "react-hot-toast";
+import {EquipmentDisplay} from "../Equipment/EquipmentDisplay.tsx";
 
 
 export const PageLayout: React.FC = () => {
@@ -23,6 +24,8 @@ export const PageLayout: React.FC = () => {
                     <InventoryDisplay/>
 
                     <TowerDisplay/>
+
+                    <EquipmentDisplay/>
                 </div>
 
                 {/* Center Column */}

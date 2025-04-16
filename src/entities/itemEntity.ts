@@ -34,7 +34,7 @@ export enum ItemTags {
 export interface ItemEntity {
     name: string;
     image: string;
-    tier: 1 | 2 | 3 | 4; // 4 is  heroic
+    tier: 1 | 2 | 3 | 4; //4 = heroic
     tags: ItemTags[];
     restrictedTo: null | ItemRestriction;
     stats: ItemStats;
