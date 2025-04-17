@@ -160,20 +160,20 @@ export const itemData: Record<number, ItemEntity> = {
     81: { name: "Thunderbloom Bulb", image: "/items/uniques/orc/thrallUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Thrall, stats: {str: 50, agi: 50, int: 100}, passive: "Increases the damage range of Forked Lightning skill." },
 
     // Maiev
-    82: { name: "Cloak of Shadows", image: "/items/uniques/elv/maievUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Maiev, stats: {str: 50, agi: 100, int: 50}, passive: "Increases passive Skill +1" },
-    83: { name: "Cloak of Shadows", image: "/items/uniques/elv/maievUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Maiev, stats: {str: 50, agi: 100, int: 50}, passive: "The attack has a 15% chance of spawning a blood ritual that deals total damage (Agility * 6 + 200) over 2 times. The second or later Maiev increases dance damage by 25%." },
+    82: { name: "Cloak of Shadows", image: "/items/uniques/elf/maievUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Maiev, stats: {str: 50, agi: 100, int: 50}, passive: "Increases passive Skill +1" },
+    83: { name: "Cloak of Shadows", image: "/items/uniques/elf/maievUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Maiev, stats: {str: 50, agi: 100, int: 50}, passive: "The attack has a 15% chance of spawning a blood ritual that deals total damage (Agility * 6 + 200) over 2 times. The second or later Maiev increases dance damage by 25%." },
 
     // Demon Hunter
-    84: { name: "Heart of Serianox", image: "/items/uniques/elv/dhUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Dh, stats: {str: 50, agi: 100, int: 50}, passive: "Increases passive Skill +1" },
-    85: { name: "Heart of Serianox", image: "/items/uniques/elv/dhUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne],restrictedTo: ItemRestriction.Dh, stats: {str: 50, agi: 100, int: 50},  passive: "Has a 25% chance of permanently removing the target's evasion ability." },
+    84: { name: "Heart of Serianox", image: "/items/uniques/elf/dhUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Dh, stats: {str: 50, agi: 100, int: 50}, passive: "Increases passive Skill +1" },
+    85: { name: "Heart of Serianox", image: "/items/uniques/elf/dhUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne],restrictedTo: ItemRestriction.Dh, stats: {str: 50, agi: 100, int: 50},  passive: "Has a 25% chance of permanently removing the target's evasion ability." },
 
     // Priestess of the Moon
-    86: { name: "Horn of Cenarius", image: "/items/uniques/elv/potmUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Potm, stats: {str: 50, agi: 100, int: 50}, passive: "Increases passive Skill +1" },
-    87: { name: "Horn of Cenarius", image: "/items/uniques/elv/potmUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Potm, stats: {str: 50, agi: 100, int: 50},  passive: "There is no limit to the number of Owls summoned per tower." },
+    86: { name: "Horn of Cenarius", image: "/items/uniques/elf/potmUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Potm, stats: {str: 50, agi: 100, int: 50}, passive: "Increases passive Skill +1" },
+    87: { name: "Horn of Cenarius", image: "/items/uniques/elf/potmUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne], restrictedTo: ItemRestriction.Potm, stats: {str: 50, agi: 100, int: 50},  passive: "There is no limit to the number of Owls summoned per tower." },
 
     // Ancient of Lore
-    88: { name: "xx", image: "/items/uniques/elv/aolUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Aol, stats: {str: 50, agi: 50, int: 100}, passive: "Increases passive Skill +1" },
-    89: { name: "xx", image: "/items/uniques/elv/aolUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne],restrictedTo: ItemRestriction.Aol, stats: {str: 50, agi: 50, int: 100},  passive: "Reduced Fountain mana cost to 0.5%." },
+    88: { name: "Shimmerweed", image: "/items/uniques/elf/aolUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Aol, stats: {str: 50, agi: 50, int: 100}, passive: "Increases passive Skill +1" },
+    89: { name: "Shimmerweed", image: "/items/uniques/elf/aolUnique.webp", tier: 4, tags: [Heroic, LevelFive, LimitOne],restrictedTo: ItemRestriction.Aol, stats: {str: 50, agi: 50, int: 100},  passive: "Reduced Fountain mana cost to 0.5%." },
 
     // Lich
     90: { name: "Book of the Dead", image: "/items/uniques/undead/lichUnique.webp", tier: 3, tags: [Unique, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Lich, stats: {str: 50, agi: 50, int: 100}, passive: "Increases passive Skill +1" },

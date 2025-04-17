@@ -48,15 +48,15 @@ export const equipmentData: Record<number, EquipmentEntity> = {
     24:{name: "Air Revenant (Royal)", image:"/equipment/revenant/revenantAir.webp", type:Revenant, cost: "", bonus:"Runes: Mage Adept Training, Spell Book Training, Long Rifles 1/2"},
     26:{name: "Void Revenant", image:"/equipment/revenant/revenantVoid.webp", type:Revenant, cost: "", bonus:"Runes: Mage Adept Training, Spell Book Training, Long Rifles 1/2"},
 
-    27:{name: "Human Summoner", image:"/equipment/race/summonerHu.webp", type:RaceSummoner, cost:"1000 Soul Gems (Lock)", bonus:"10% Human Race chance, 15% Summon damage for all players"},
-    28:{name: "Orc Summoner", image:"/equipment/race/summonerOrc.webp", type:RaceSummoner, cost:"1000 Soul Gems (Lock)", bonus:"10% Orc Race chance, 15% Summon damage for all players"},
-    29:{name: "Night Elf Summoner", image:"/equipment/race/summonerNe.webp", type:RaceSummoner, cost:"1000 Soul Gems (Lock)", bonus:"10% Elf Race chance, 15% Summon damage for all players"},
-    30:{name: "Undead Summoner", image:"/equipment/race/summonerUd.webp", type:RaceSummoner, cost:"1000 Soul Gems (Lock)", bonus:"10% Undead Race chance, 15% Summon damage for all players"},
+    27:{name: "Human Summoner", image:"/equipment/raceSummoner/summonerHu.webp", type:RaceSummoner, cost:"1000 Soul Gems (Lock)", bonus:"10% Human Race chance, 15% Summon damage for all players"},
+    28:{name: "Orc Summoner", image:"/equipment/raceSummoner/summonerOrc.webp", type:RaceSummoner, cost:"1000 Soul Gems (Lock)", bonus:"10% Orc Race chance, 15% Summon damage for all players"},
+    29:{name: "Night Elf Summoner", image:"/equipment/raceSummoner/summonerNe.webp", type:RaceSummoner, cost:"1000 Soul Gems (Lock)", bonus:"10% Elf Race chance, 15% Summon damage for all players"},
+    30:{name: "Undead Summoner", image:"/equipment/raceSummoner/summonerUd.webp", type:RaceSummoner, cost:"1000 Soul Gems (Lock)", bonus:"10% Undead Race chance, 15% Summon damage for all players"},
 
-    31:{name: "Human Tower", image:"/equipment/race/towerHu.webp", type:RaceTower, cost:"1000 Soul Gems (Lock)", bonus:"15% Human Race chance, 10% tower damage for all players"},
-    32:{name: "Orc Tower", image:"/equipment/race/towerOrc.webp", type:RaceTower, cost:"1000 Soul Gems (Lock)", bonus:"15% Orc Race chance, 10% tower damage for all players"},
-    33:{name: "Night Elf Tower", image:"/equipment/race/towerNe.webp", type:RaceTower, cost:"1000 Soul Gems (Lock)", bonus:"15% Night Elf Race chance, 10% tower damage for all players"},
-    34:{name: "Undead Tower", image:"/equipment/race/towerUd.webp", type:RaceTower, cost:"1000 Soul Gems (Lock)", bonus:"15% Undead Race chance, 10% tower damage for all players"},
+    31:{name: "Human Tower", image:"/equipment/raceTower/towerHu.webp", type:RaceTower, cost:"1000 Soul Gems (Lock)", bonus:"15% Human Race chance, 10% tower damage for all players"},
+    32:{name: "Orc Tower", image:"/equipment/raceTower/towerOrc.webp", type:RaceTower, cost:"1000 Soul Gems (Lock)", bonus:"15% Orc Race chance, 10% tower damage for all players"},
+    33:{name: "Night Elf Tower", image:"/equipment/raceTower/towerNe.webp", type:RaceTower, cost:"1000 Soul Gems (Lock)", bonus:"15% Night Elf Race chance, 10% tower damage for all players"},
+    34:{name: "Undead Tower", image:"/equipment/raceTower/towerUd.webp", type:RaceTower, cost:"1000 Soul Gems (Lock)", bonus:"15% Undead Race chance, 10% tower damage for all players"},
 
     35: {name: "Human Battleship", image: "/equipment/ship/shipHuman.webp", type:Ship, bonus:" 5% Human chance, 5% damage", cost:"300 Medals", skill:""},
     36: {name: "Orc Juggernaut", image: "/equipment/ship/shipOrc.webp", type:Ship, bonus:" 5% Orc chance, 5% damage", cost:"300 Medals", skill:""},
