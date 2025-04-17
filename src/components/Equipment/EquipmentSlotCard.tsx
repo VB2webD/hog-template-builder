@@ -1,6 +1,6 @@
 import React from "react";
-import { EquipmentType, displayEquipmentType } from "../../features/Equipment/equipmentData";
-import { EquipmentEntity } from "../../entities/EquipmentEntity.ts";
+import {displayEquipmentType, EquipmentType} from "../../features/Equipment/equipmentData";
+import {EquipmentEntity} from "../../entities/EquipmentEntity.ts";
 
 interface Props {
     slot: EquipmentType;
@@ -8,8 +8,11 @@ interface Props {
     onClick: () => void;
 }
 
-export const EquipmentSlotCard: React.FC<Props> = ({ slot, item, onClick }) => {
-    const imageSrc = item ? item.image : `/equipment/empty-slot.png`;
+export const EquipmentSlotCard: React.FC<Props> = ({slot, item, onClick}) => {
+    const lowercaseFirst = (str: string) => str.charAt(0).toLowerCase() + str.slice(1);
+
+    const slotName = lowercaseFirst(EquipmentType[slot]);
+    const imageSrc = item ? item.image : `/equipment/${slotName}/${slotName}Placeholder.webp`;
     const altText = item ? item.name : `Empty ${displayEquipmentType(slot)} slot`;
 
     return (
