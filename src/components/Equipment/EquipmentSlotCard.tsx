@@ -1,6 +1,6 @@
 import React from "react";
-import {EquipmentType,displayEquipmentType} from "../../features/Equipment/equipmentData";
-import {EquipmentEntity} from "../../entities/EquipmentEntity.ts";
+import { EquipmentType, displayEquipmentType } from "../../features/Equipment/equipmentData";
+import { EquipmentEntity } from "../../entities/EquipmentEntity.ts";
 
 interface Props {
     slot: EquipmentType;
@@ -9,21 +9,20 @@ interface Props {
 }
 
 export const EquipmentSlotCard: React.FC<Props> = ({ slot, item, onClick }) => {
+    const imageSrc = item ? item.image : `/equipment/empty-slot.png`;
+    const altText = item ? item.name : `Empty ${displayEquipmentType(slot)} slot`;
+
     return (
         <div
-            className="flex items-center justify-between p-2 bg-white border rounded cursor-pointer hover:bg-gray-100"
+            className="flex flex-col items-center cursor-pointer hover:scale-105 transition-transform"
             onClick={onClick}
+            title={altText}
         >
-            <span className="font-medium">{displayEquipmentType(slot)}</span>
-            {item ? (
-                <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-10 h-10 object-contain border rounded"
-                />
-            ) : (
-                <span className="text-gray-400 text-sm">Empty</span>
-            )}
+            <img
+                src={imageSrc}
+                alt={altText}
+                className="w-12 h-12 object-contain border rounded"
+            />
         </div>
     );
 };
