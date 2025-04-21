@@ -5,17 +5,19 @@ import { RestrictedItemCard } from "./RestrictedItemCard";
 interface PanelProps {
     name: string;
     tier: number;
+    main: string;
 }
 
-export const RestrictedItemPanel: React.FC<PanelProps> = ({ name, tier }) => {
+export const RestrictedItemPanel: React.FC<PanelProps> = ({ name, tier, main }) => {
     const items = useMemo(() => {
         return Object.entries(itemData)
             .map(([id, item]) => ({ ...item, id: parseInt(id, 10) }))
             .filter(item => {
                 if (tier === 3) return item.restrictedTo === name;
+                if (tier === 1) return item.restrictedTo === main;
                 return item.restrictedTo === tier;
             });
-    }, [name, tier]);
+    }, [name, tier, main]);
 
     if (!items.length) return null;
 

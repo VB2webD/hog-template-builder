@@ -25,7 +25,7 @@ export enum ItemTags {
     Stack,
     AttackSpeed,
     AttackDamage,
-    skillUpgrade,
+    SkillUpgrade,
     LevelFive,
     LimitOne,
     Resistance

@@ -13,7 +13,7 @@ export interface Tower {
     image: string;
     slots: number;
     race: Race;
-    main?: "Strength" | "Agility" | "Intelligence";
+    main: "Strength" | "Agility" | "Intelligence" | "";
 }
 
 // flattened array for state perisistance, I use this to reduce the volume of the saved states for url hashing
@@ -96,11 +96,11 @@ export const towerData:  Record<number, Tower> = {
     69: {name: "Pitlord", tier: 3, image: "/towers/neutral/pit.webp", slots: 6, race: Race.Neutral, main: "Strength"},
     70: {name: "Dragonspawn Overseer", tier: 3, image: "/towers/neutral/do.webp", slots: 6, race: Race.Neutral, main: "Agility"},
     // Dragon towers
-    71: {name: "Red Dragon", tier: 3, image: "towers/dragon/dragonRed.webp", slots: 0, race: Race.Dragon},
-    72: {name: "Blue Dragon", tier: 3, image: "towers/dragon/dragonBlue.webp", slots: 0, race: Race.Dragon},
-    73: {name: "Green Dragon", tier: 3, image: "towers/dragon/dragonGreen.webp", slots: 0, race: Race.Dragon},
-    74: {name: "Yellow Dragon", tier: 3, image: "towers/dragon/dragonYellow.webp", slots: 0, race: Race.Dragon},
-    75: {name: "Black Dragon", tier: 3, image: "towers/dragon/dragonBlack.webp", slots: 0, race: Race.Dragon},
+    71: {name: "Red Dragon", tier: 3, image: "towers/dragon/dragonRed.webp", slots: 0, race: Race.Dragon, main: ""},
+    72: {name: "Blue Dragon", tier: 3, image: "towers/dragon/dragonBlue.webp", slots: 0, race: Race.Dragon, main: ""},
+    73: {name: "Green Dragon", tier: 3, image: "towers/dragon/dragonGreen.webp", slots: 0, race: Race.Dragon, main: ""},
+    74: {name: "Yellow Dragon", tier: 3, image: "towers/dragon/dragonYellow.webp", slots: 0, race: Race.Dragon, main: ""},
+    75: {name: "Black Dragon", tier: 3, image: "towers/dragon/dragonBlack.webp", slots: 0, race: Race.Dragon, main: ""},
 };
 
 

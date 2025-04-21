@@ -27,6 +27,7 @@ export const InventoryDisplay: React.FC = () => {
                 <RestrictedItemPanel
                     name={tower.name}
                     tier={tower.tier}
+                    main={tower.main}
                 />
             )}
             {hoveredItemId !== null && (
