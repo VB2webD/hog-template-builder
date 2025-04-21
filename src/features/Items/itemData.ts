@@ -127,8 +127,8 @@ export const itemData: Record<number, ItemEntity> = {
 
     // passiv skill Upgrades
     64: { name: "Ancient of Fire", image: "/items/orbs/orbRed.webp", tier: 1, tags: [Ancient, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Tier1, stats: {str:100, agi:0, int:0}, passive: "Increases passive skill +1" },
-    65: { name: "Ancient of Venom", image: "/items/orbs/orbGreen.webp", tier: 1, tags: [Ancient, skillUpgrade, LevelFive,LimitOne], restrictedTo: ItemRestriction.Tier1, stats: {str:100, agi:0, int:0}, passive: "Increases passive skill +1" },
-    66: { name: "Ancient of Frost", image: "/items/orbs/orbBlue.webp", tier: 1, tags: [Ancient, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Tier1, stats: {str:100, agi:0, int:0}, passive: "Increases passive skill +1" },
+    65: { name: "Ancient of Venom", image: "/items/orbs/orbGreen.webp", tier: 1, tags: [Ancient, skillUpgrade, LevelFive,LimitOne], restrictedTo: ItemRestriction.Tier1, stats: {str:0, agi:100, int:0}, passive: "Increases passive skill +1" },
+    66: { name: "Ancient of Frost", image: "/items/orbs/orbBlue.webp", tier: 1, tags: [Ancient, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Tier1, stats: {str:0, agi:0, int:100}, passive: "Increases passive skill +1" },
     67: { name: "Ank of Reincarnation", image: "/items/ank.webp", tier: 3, tags: [Ancient, skillUpgrade, LevelFive, LimitOne], restrictedTo: ItemRestriction.Tier2, stats: {str:0, agi:0, int:0}, passive: "Increases passive skill+1, 150 main attribute" },
 
     // Kael
